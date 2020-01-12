@@ -23,9 +23,12 @@
     "test": "jest",
     "prepublishOnly": "rm -rf dist && yarn build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mongodb": "^3.4.1"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.25",
+    "@types/mongodb": "^3.3.14",
     "@types/node": "^13.1.6",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
@@ -37,7 +40,7 @@
     "prettier": "^1.19.1",
     "ts-jest": "^24.3.0",
     "typedoc": "^0.15.8",
-    "typescript": "^3.7.4"
+    "typescript": "^3.8.0-beta"
   },
   "keywords": [
     "minimal",
