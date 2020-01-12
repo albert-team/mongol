@@ -1,20 +1,32 @@
-import { MongoClient, Db, Collection } from 'mongodb'
+import { MongoClient, Db } from 'mongodb'
+import { DbNotFoundError } from './errors'
 
 /**
  * MongoDB helpers class.
  */
 class Mongol {
   private readonly client: MongoClient
-  private readonly db: Db
+  private readonly dbName: string
+  private db: Db
 
   constructor(uri: string, dbName: string) {
-    this.client = new MongoClient(uri, { useNewUrlParser: true })
-    this.db = this.client.db(dbName)
+    this.client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    this.dbName = dbName
+  }
+
+  /** Database instance. */
+  get database(): Db {
+    if (!this.db) throw new DbNotFoundError()
+    return this.db
   }
 
   /** Connect to the database. */
   public async connect(): Promise<void> {
     await this.client.connect()
+    this.db = this.client.db(this.dbName)
   }
 
   /** Disconnect from the database. */
@@ -22,19 +34,27 @@ class Mongol {
     await this.client.close()
   }
 
-  /** Get a collection.
-   * @param name Collection name.
-   * @param schema JSON schema. If provided, it will be added to the collection on created.
+  /**
+   * Add or update JSON schema for a collection.
+   * @param collectionName Collection name.
+   * @param schema JSON schema.
    */
-  public async getCollection(name: string, schema: object = null): Promise<Collection> {
-    if (schema) {
-      const collections = await this.db.collections()
-      const collectionNames = collections.map((collection) => collection.collectionName)
-      if (!collectionNames.includes(name)) {
-        await this.db.createCollection(name, { validator: { $jsonSchema: schema } })
-      }
+  public async setSchema(collectionName: string, schema: object): Promise<void> {
+    if (!this.db) throw new DbNotFoundError()
+
+    const collections = await this.db.collections()
+    const collectionNames = collections.map((collection) => collection.collectionName)
+
+    if (!collectionNames.includes(collectionName)) {
+      await this.db.createCollection(collectionName, {
+        validator: { $jsonSchema: schema }
+      })
+    } else {
+      await this.db.command({
+        collMod: collectionName,
+        validator: { $jsonSchema: schema }
+      })
     }
-    return this.db.collection(name)
   }
 }
 
