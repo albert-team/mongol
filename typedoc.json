@@ -1,8 +1,0 @@
-{
-  "exclude": ["**/*.test.*"],
-  "excludeExternals": true,
-  "excludePrivate": true,
-  "hideGenerator": true,
-  "mode": "file",
-  "out": "docs"
-}
