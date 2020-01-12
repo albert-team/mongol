@@ -7,20 +7,20 @@ after_success:
   - yarn run build:docs
 deploy:
   - provider: npm
-    api_key: $NPM_TOKEN
+    api_token: $NPM_TOKEN
     email: 'luongquangmanh85@gmail.com'
     on:
       branch: master
       tags: true
     cleanup: false
   - provider: releases
-    api_key: $GITHUB_TOKEN
+    token: $GITHUB_TOKEN
     on:
       branch: master
       tags: true
     cleanup: false
   - provider: pages
-    github_token: $GITHUB_TOKEN
+    token: $GITHUB_TOKEN
     local_dir: docs
     on:
       branch: master
