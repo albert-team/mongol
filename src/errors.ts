@@ -1,6 +1,6 @@
 class DbNotFoundError extends ReferenceError {
   constructor() {
-    super('Database not found. MongoClient must be connected beforehand.')
+    super('Database not found. The client may be disconnected from the database server.')
   }
 }
 

@@ -23,13 +23,19 @@ class Mongol {
     return this.db
   }
 
-  /** Connect to the database. */
+  /** Connect to the database.
+   *
+   * In upcoming minor versions, this will do nothing. In the next major version, this will be removed.
+   */
   public async connect(): Promise<void> {
     await this.client.connect()
     this.db = this.client.db(this.dbName)
   }
 
-  /** Disconnect from the database. */
+  /** Disconnect from the database.
+   *
+   * In upcoming minor versions, this will do nothing. In the next major version, this will be removed.
+   */
   public async disconnect(): Promise<void> {
     await this.client.close()
   }
