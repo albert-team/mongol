@@ -1,5 +1,22 @@
 import { MongoClient, Db } from 'mongodb'
 import { DbNotFoundError } from './errors'
+import { removeUnsupportedKeywords } from './utils'
+
+/**
+ * Options when setting JSON schemas.
+ */
+interface SchemaOptions {
+  /**
+   * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
+   *
+   * They are: $ref, $schema, default, definitions, format, id.
+   */
+  ignoreUnsupportedKeywords?: boolean
+
+  /** Ignore "type" keyword, so as not to conflict with "bsonType".
+   */
+  ignoreType?: boolean
+}
 
 /**
  * MongoDB helpers class.
@@ -44,9 +61,17 @@ class Mongol {
    * Add or update JSON schema for a collection.
    * @param collectionName Collection name.
    * @param schema JSON schema.
+   * @param options Options.
    */
-  public async setSchema(collectionName: string, schema: object): Promise<void> {
+  public async setSchema(
+    collectionName: string,
+    schema: object,
+    options: SchemaOptions = {}
+  ): Promise<void> {
     if (!this.db) throw new DbNotFoundError()
+
+    const { ignoreUnsupportedKeywords = true, ignoreType = false } = options
+    if (ignoreUnsupportedKeywords) schema = removeUnsupportedKeywords(schema, ignoreType)
 
     const collections = await this.db.collections()
     const collectionNames = collections.map((collection) => collection.collectionName)
