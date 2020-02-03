@@ -1,4 +1,5 @@
-import { removeUnsupportedKeywords } from './utils'
+import { OMITTED_JSON_SCHEMA_KEYWORDS } from '.'
+import { removeProperties } from './utils'
 
 let sampleSchema
 
@@ -47,7 +48,7 @@ beforeEach(() => {
   }
 })
 
-test('removeUnsupportedKeywords, without removing type', () => {
+test('removeProperties(), without removing type', () => {
   const result = {
     type: 'object',
     bsonType: 'object',
@@ -89,10 +90,12 @@ test('removeUnsupportedKeywords, without removing type', () => {
     }
   }
 
-  expect(removeUnsupportedKeywords(sampleSchema, false)).toStrictEqual(result)
+  expect(removeProperties(sampleSchema, OMITTED_JSON_SCHEMA_KEYWORDS)).toStrictEqual(
+    result
+  )
 })
 
-test('removeUnsupportedKeywords, with type', () => {
+test('removeProperties(), with type', () => {
   const result = {
     bsonType: 'object',
     required: ['name', 'dateOfBirth', 'accountBalance'],
@@ -127,5 +130,7 @@ test('removeUnsupportedKeywords, with type', () => {
     }
   }
 
-  expect(removeUnsupportedKeywords(sampleSchema, true)).toStrictEqual(result)
+  expect(
+    removeProperties(sampleSchema, [...OMITTED_JSON_SCHEMA_KEYWORDS, 'type'])
+  ).toStrictEqual(result)
 })

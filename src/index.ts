@@ -1,6 +1,16 @@
 import { MongoClient, Db } from 'mongodb'
 import { DbNotFoundError } from './errors'
-import { removeUnsupportedKeywords } from './utils'
+import { removeProperties } from './utils'
+
+/** JSON Schema keywords that MongoDB does not support. */
+const OMITTED_JSON_SCHEMA_KEYWORDS = [
+  '$ref',
+  '$schema',
+  'default',
+  'definitions',
+  'format',
+  'id'
+]
 
 /**
  * Options when setting JSON schemas.
@@ -71,7 +81,10 @@ class Mongol {
     if (!this.db) throw new DbNotFoundError()
 
     const { ignoreUnsupportedKeywords = true, ignoreType = false } = options
-    if (ignoreUnsupportedKeywords) schema = removeUnsupportedKeywords(schema, ignoreType)
+    const keys = [] // properties to remove
+    if (ignoreUnsupportedKeywords) keys.push(...OMITTED_JSON_SCHEMA_KEYWORDS)
+    if (ignoreType) keys.push('type')
+    schema = removeProperties(schema, keys)
 
     const collections = await this.db.collections()
     const collectionNames = collections.map((collection) => collection.collectionName)
@@ -89,4 +102,4 @@ class Mongol {
   }
 }
 
-export { Mongol }
+export { OMITTED_JSON_SCHEMA_KEYWORDS, Mongol }

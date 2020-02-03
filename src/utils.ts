@@ -1,22 +1,19 @@
-const OMITTED_KEYWORDS = ['$ref', '$schema', 'default', 'definitions', 'format', 'id']
-
-const removeUnsupportedKeywords = (schema: object, removeType: boolean): object => {
+const removeProperties = (schema: object, keys: string[]): object => {
   const result = {}
 
   for (const [k, v] of Object.entries(schema)) {
-    if (OMITTED_KEYWORDS.includes(k)) continue
-    if (removeType && k === 'type') continue
+    if (keys.includes(k)) continue
 
     if (v instanceof Array) {
       result[k] = v.map((item) => {
-        if (item instanceof Object) return removeUnsupportedKeywords(item, removeType)
+        if (item instanceof Object) return removeProperties(item, keys)
         return item
       })
     } else if (v instanceof Object) {
-      result[k] = removeUnsupportedKeywords(v, removeType)
+      result[k] = removeProperties(v, keys)
     } else result[k] = v
   }
   return result
 }
 
-export { removeUnsupportedKeywords }
+export { removeProperties }
