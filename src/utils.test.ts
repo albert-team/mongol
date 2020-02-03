@@ -1,4 +1,4 @@
-import { OMITTED_JSON_SCHEMA_KEYWORDS } from '.'
+import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
 import { removeProperties } from './utils'
 
 let sampleSchema

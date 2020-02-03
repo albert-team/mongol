@@ -1,16 +1,7 @@
 import { MongoClient, Db } from 'mongodb'
+import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
 import { DbNotFoundError } from './errors'
 import { removeProperties } from './utils'
-
-/** JSON Schema keywords that MongoDB does not support. */
-const OMITTED_JSON_SCHEMA_KEYWORDS = [
-  '$ref',
-  '$schema',
-  'default',
-  'definitions',
-  'format',
-  'id'
-]
 
 /**
  * Options when setting JSON schemas.
