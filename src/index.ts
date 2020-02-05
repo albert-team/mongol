@@ -93,4 +93,4 @@ class Mongol {
   }
 }
 
-export { OMITTED_JSON_SCHEMA_KEYWORDS, Mongol }
+export { Mongol }
