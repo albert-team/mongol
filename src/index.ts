@@ -1,4 +1,4 @@
-import { MongoClient, Db } from 'mongodb'
+import { MongoClient, Db, Collection } from 'mongodb'
 import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
 import { DbNotFoundError } from './errors'
 import { removeProperties } from './utils'
@@ -6,7 +6,7 @@ import { removeProperties } from './utils'
 /**
  * Options when setting JSON schemas.
  */
-interface SchemaOptions {
+export interface SchemaOptions {
   /**
    * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
    * @see OMITTED_JSON_SCHEMA_KEYWORDS
@@ -18,10 +18,45 @@ interface SchemaOptions {
   ignoreType?: boolean
 }
 
+/** CRUD operations supported by MongoDB [[Collection]].
+ *
+ * Mongol does not support deprecated operations.
+ */
+export enum CrudOperation {
+  DeleteMany = 'deleteMany',
+  DeleteOne = 'deleteOne',
+  FindOne = 'findOne',
+  FindOneAndDelete = 'findOneAndDelete',
+  FindOneAndReplace = 'findOneAndReplace',
+  FindOneAndUpdate = 'findOneAndUpdate',
+  InsertMany = 'insertMany',
+  InsertOne = 'insertOne',
+  ReplaceOne = 'replaceOne',
+  UpdateMany = 'updateMany',
+  UpdateOne = 'updateOne'
+}
+
+/** CRUD operation hook context. */
+export interface CrudOperationHookContext {
+  operation: CrudOperation
+}
+
+/** CRUD operation hook handler function. */
+export type CrudOperationHookHandler = (
+  context: CrudOperationHookContext,
+  ...args
+) => void
+
+/** CRUD operation hook. */
+export interface CrudOperationHook {
+  before?: CrudOperationHookHandler
+  after?: CrudOperationHookHandler
+}
+
 /**
  * MongoDB helpers class.
  */
-class Mongol {
+export class Mongol {
   private readonly client: MongoClient
   private readonly dbName: string
   private db: Db
@@ -75,7 +110,7 @@ class Mongol {
   }
 
   /**
-   * Add or update JSON schema for a collection.
+   * Add or update JSON schema of a collection.
    * @param collectionName Collection name.
    * @param schema JSON schema.
    * @param options Options.
@@ -107,6 +142,22 @@ class Mongol {
       })
     }
   }
-}
 
-export { Mongol }
+  /** Attach a CRUD operation hook to a collection and return the monkey-patched one.
+   * @param collection Collection.
+   * @param hook Hook/trigger.
+   * @returns Collection with the hook attached.
+   */
+  public attachHook(collection: Collection, hook: CrudOperationHook): Collection {
+    for (const [operation, method] of Object.entries(CrudOperation)) {
+      const original: Function = collection[method]
+      collection[method] = async (...args): Promise<any> => {
+        if (hook.before) hook.before({ operation: CrudOperation[operation] }, ...args)
+        const result = await original(...args)
+        if (hook.after) hook.after({ operation: CrudOperation[operation] }, result)
+        return result
+      }
+    }
+    return collection
+  }
+}
