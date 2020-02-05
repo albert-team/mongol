@@ -56,6 +56,7 @@ class Mongol {
    */
   public async disconnect(): Promise<void> {
     await this.client.close()
+    this.db = undefined
   }
 
   /**
