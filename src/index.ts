@@ -9,8 +9,7 @@ import { removeProperties } from './utils'
 interface SchemaOptions {
   /**
    * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
-   *
-   * They are: $ref, $schema, default, definitions, format, id.
+   * @see OMITTED_JSON_SCHEMA_KEYWORDS
    */
   ignoreUnsupportedKeywords?: boolean
 
@@ -35,10 +34,26 @@ class Mongol {
     this.dbName = dbName
   }
 
-  /** Database instance. */
+  /** Database instance.
+   *
+   * In upcoming minor versions, this will be deprecated. In the next major version, this will be removed.
+   */
   get database(): Db {
     if (!this.db) throw new DbNotFoundError()
     return this.db
+  }
+
+  /** Database instance, as a Promise. */
+  get promisifiedDatabase(): Promise<Db> {
+    if (!this.db) {
+      return this.client
+        .connect()
+        .then((client) => client.db(this.dbName))
+        .catch(() => {
+          throw new DbNotFoundError()
+        })
+    }
+    return Promise.resolve(this.db)
   }
 
   /** Connect to the database.
