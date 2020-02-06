@@ -96,10 +96,13 @@ export class Mongol {
 
   /** Attach a database hook to a collection and return the monkey-patched one.
    * @param collection Collection.
-   * @param hook Hook/trigger.
-   * @returns Collection with the hook attached.
+   * @param hook Database hook/trigger.
+   * @returns Collection proxy with the hook attached.
    */
-  public attachDatabaseHook(collection: Collection, hook: DatabaseHook): Collection {
+  public attachDatabaseHook<TSchema>(
+    collection: Collection<TSchema>,
+    hook: DatabaseHook
+  ): Collection<TSchema> {
     for (const [op, fn] of Object.entries(CrudOperation)) {
       const original: Function = collection[fn]
       collection[fn] = async (...args): Promise<any> => {
