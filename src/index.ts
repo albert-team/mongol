@@ -2,7 +2,7 @@ import { MongoClient, Db, Collection } from 'mongodb'
 import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
 import { DbNotFoundError } from './errors'
 import { SchemaOptions, DatabaseHook, CrudOperation } from './types'
-import { removeProperties } from './utils'
+import { getSchemaProxy } from './utils'
 
 /**
  * MongoDB helpers class.
@@ -77,7 +77,7 @@ export class Mongol {
     const keys = [] // properties to remove
     if (ignoreUnsupportedKeywords) keys.push(...OMITTED_JSON_SCHEMA_KEYWORDS)
     if (ignoreType) keys.push('type')
-    schema = removeProperties(schema, keys)
+    schema = getSchemaProxy(schema, keys)
 
     const collections = await this.db.collections()
     const collectionNames = collections.map((collection) => collection.collectionName)

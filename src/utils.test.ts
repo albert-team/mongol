@@ -1,5 +1,5 @@
 import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
-import { removeProperties } from './utils'
+import { getSchemaProxy } from './utils'
 
 let sampleSchema
 
@@ -48,7 +48,7 @@ beforeEach(() => {
   }
 })
 
-test('removeProperties(), without removing type', () => {
+test('getSchemaProxy(), without removing type', () => {
   const result = {
     type: 'object',
     bsonType: 'object',
@@ -90,12 +90,10 @@ test('removeProperties(), without removing type', () => {
     }
   }
 
-  expect(removeProperties(sampleSchema, OMITTED_JSON_SCHEMA_KEYWORDS)).toStrictEqual(
-    result
-  )
+  expect(getSchemaProxy(sampleSchema, OMITTED_JSON_SCHEMA_KEYWORDS)).toEqual(result)
 })
 
-test('removeProperties(), with type', () => {
+test('getSchemaProxy(), with type', () => {
   const result = {
     bsonType: 'object',
     required: ['name', 'dateOfBirth', 'accountBalance'],
@@ -130,7 +128,7 @@ test('removeProperties(), with type', () => {
     }
   }
 
-  expect(
-    removeProperties(sampleSchema, [...OMITTED_JSON_SCHEMA_KEYWORDS, 'type'])
-  ).toStrictEqual(result)
+  expect(getSchemaProxy(sampleSchema, [...OMITTED_JSON_SCHEMA_KEYWORDS, 'type'])).toEqual(
+    result
+  )
 })

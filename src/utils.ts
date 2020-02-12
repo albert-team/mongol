@@ -1,19 +1,23 @@
-const removeProperties = (schema: object, keys: string[]): object => {
-  const result = {}
+const getSchemaProxy = (schema: object, invalidProps: string[]): object => {
+  const handler: ProxyHandler<object> = {
+    get: (target: object, prop: string, receiver: any): any => {
+      if (invalidProps.includes(prop)) return undefined
 
-  for (const [k, v] of Object.entries(schema)) {
-    if (keys.includes(k)) continue
+      const value = Reflect.get(target, prop, receiver)
 
-    if (v instanceof Array) {
-      result[k] = v.map((item) => {
-        if (item instanceof Object) return removeProperties(item, keys)
-        return item
-      })
-    } else if (v instanceof Object) {
-      result[k] = removeProperties(v, keys)
-    } else result[k] = v
+      if (value instanceof Array) {
+        return value.map((item) => {
+          if (item instanceof Object) return getSchemaProxy(item, invalidProps)
+          return item
+        })
+      }
+      if (value instanceof Object) {
+        return getSchemaProxy(value, invalidProps)
+      }
+      return value
+    }
   }
-  return result
+  return new Proxy(schema, handler)
 }
 
-export { removeProperties }
+export { getSchemaProxy }
