@@ -94,25 +94,57 @@ export class Mongol {
     }
   }
 
-  /** Attach a database hook to a collection and return the monkey-patched one.
+  /** Attach a database hook to a collection.
    * @param collection Collection.
    * @param hook Database hook/trigger.
-   * @returns Collection proxy with the hook attached.
+   * @returns Collection with the hook attached.
    */
   public attachDatabaseHook<TSchema>(
     collection: Collection<TSchema>,
     hook: DatabaseHook
   ): Collection<TSchema> {
-    for (const [op, fn] of Object.entries(CrudOperation)) {
-      const original: Function = collection[fn]
-      collection[fn] = async (...args): Promise<any> => {
-        const operation = CrudOperation[op]
-        if (hook.before) hook.before({ operation, event: 'before' }, ...args)
-        const result = await original(...args)
-        if (hook.after) hook.after({ operation, event: 'after' }, result)
-        return result
-      }
+    for (const fn of Object.values(CrudOperation)) {
+      const originalFn = collection[fn]
+      collection[fn] = this.withDatabaseHook(originalFn, hook, fn) as any
     }
     return collection
+  }
+
+  /**
+   * Attach a database hook to a method of MongoDB [[Collection]].
+   * @param fn Method of MongoDB [[Collection]].
+   * @param hook Database hook/trigger.
+   * @param operation CRUD operation respective to the method.
+   */
+  private withDatabaseHook(
+    fn: Function,
+    hook: DatabaseHook,
+    operation: CrudOperation
+  ): Function {
+    return async (...args): Promise<any> => {
+      try {
+        if (hook.before) await hook.before({ operation, event: 'before' }, ...args)
+      } catch (err) {
+        if (hook.error) await hook.error({ operation, event: 'before' }, err)
+        throw err
+      }
+
+      let result
+      try {
+        result = await fn(...args)
+      } catch (err) {
+        if (hook.error) await hook.error({ operation, event: 'during' }, err)
+        throw err
+      }
+
+      try {
+        if (hook.after) await hook.after({ operation, event: 'after' }, result)
+      } catch (err) {
+        if (hook.error) await hook.error({ operation, event: 'after' }, err)
+        throw err
+      }
+
+      return result
+    }
   }
 }

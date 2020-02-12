@@ -35,19 +35,33 @@ export enum CrudOperation {
 /** Database hook event. */
 type DatabaseHookEvent = 'before' | 'during' | 'after'
 
+/** Database hook context. */
 interface DatabaseHookContext {
   operation: CrudOperation
   event: DatabaseHookEvent
 }
 
-type DatabaseBeforeHookHandler = (context: DatabaseHookContext, ...args) => void
+/** Database hook "before" handler. */
+type DatabaseBeforeHookHandler = (
+  context: DatabaseHookContext,
+  ...args
+) => void | Promise<void>
 
-type DatabaseAfterHookHandler = (context: DatabaseHookContext, result) => void
+/** Database hook "after" handler. */
+type DatabaseAfterHookHandler = (
+  context: DatabaseHookContext,
+  result
+) => void | Promise<void>
 
-// type DatabaseErrorHookHandler = (context: DatabaseHookContext, error: Error) => void
+/** Database hook "error" handler. */
+type DatabaseErrorHookHandler = (
+  context: DatabaseHookContext,
+  error: Error
+) => void | Promise<void>
 
+/** Database hook. */
 export interface DatabaseHook {
   before?: DatabaseBeforeHookHandler
   after?: DatabaseAfterHookHandler
-  // error?: DatabaseErrorHookHandler
+  error?: DatabaseErrorHookHandler
 }
