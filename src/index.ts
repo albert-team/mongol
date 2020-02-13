@@ -71,23 +71,22 @@ export class Mongol {
     schema: object,
     options: SchemaOptions = {}
   ): Promise<void> {
-    if (!this.db) throw new DbNotFoundError()
-
     const { ignoreUnsupportedKeywords = true, ignoreType = false } = options
+    const db = await this.promisifiedDatabase
     const keys = [] // properties to remove
     if (ignoreUnsupportedKeywords) keys.push(...OMITTED_JSON_SCHEMA_KEYWORDS)
     if (ignoreType) keys.push('type')
     schema = removeProperties(schema, keys)
 
-    const collections = await this.db.collections()
+    const collections = await db.collections()
     const collectionNames = collections.map((collection) => collection.collectionName)
 
     if (!collectionNames.includes(collectionName)) {
-      await this.db.createCollection(collectionName, {
+      await db.createCollection(collectionName, {
         validator: { $jsonSchema: schema }
       })
     } else {
-      await this.db.command({
+      await db.command({
         collMod: collectionName,
         validator: { $jsonSchema: schema }
       })
