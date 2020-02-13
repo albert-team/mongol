@@ -104,7 +104,7 @@ export class Mongol {
     hook: DatabaseHook
   ): Collection<TSchema> {
     for (const fn of Object.values(CrudOperation)) {
-      const originalFn = collection[fn]
+      const originalFn = collection[fn].bind(collection)
       collection[fn] = this.withDatabaseHook(originalFn, hook, fn) as any
     }
     return collection
