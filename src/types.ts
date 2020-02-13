@@ -45,7 +45,7 @@ interface DatabaseHookContext {
 type DatabaseBeforeHookHandler = (
   context: DatabaseHookContext,
   ...args
-) => void | Promise<void>
+) => void | any[] | Promise<void> | Promise<any[]>
 
 /** Database hook "after" handler. */
 type DatabaseAfterHookHandler = (

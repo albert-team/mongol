@@ -112,6 +112,8 @@ export class Mongol {
 
   /**
    * Attach a database hook to a method of MongoDB [[Collection]].
+   *
+   * Caution: Even if "error" hook handler is provided, all errors are rethrown.
    * @param fn Method of MongoDB [[Collection]].
    * @param hook Database hook/trigger.
    * @param operation CRUD operation respective to the method.
@@ -122,8 +124,10 @@ export class Mongol {
     operation: CrudOperation
   ): Function {
     return async (...args): Promise<any> => {
+      let newArgs: void | any[]
       try {
-        if (hook.before) await hook.before({ operation, event: 'before' }, ...args)
+        if (hook.before)
+          newArgs = await hook.before({ operation, event: 'before' }, ...args)
       } catch (err) {
         if (hook.error) await hook.error({ operation, event: 'before' }, err)
         throw err
@@ -131,6 +135,7 @@ export class Mongol {
 
       let result
       try {
+        args = newArgs ? newArgs : args
         result = await fn(...args)
       } catch (err) {
         if (hook.error) await hook.error({ operation, event: 'during' }, err)
