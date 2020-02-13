@@ -1,4 +1,4 @@
-const removeProperties = (schema: object, keys: string[]): object => {
+export const removeProperties = (schema: object, keys: string[]): object => {
   const result = {}
 
   for (const [k, v] of Object.entries(schema)) {
@@ -16,4 +16,20 @@ const removeProperties = (schema: object, keys: string[]): object => {
   return result
 }
 
-export { removeProperties }
+export const withCreatedAt = <T>(doc: T, useSnakeCase: boolean): T => {
+  const prop = useSnakeCase ? 'created_at' : 'createdAt'
+  doc[prop] = new Date()
+  return doc
+}
+
+export const withUpdatedAt = <T>(doc: T, useSnakeCase: boolean): T => {
+  const prop = useSnakeCase ? 'updated_at' : 'updatedAt'
+  doc[prop] = new Date()
+  return doc
+}
+
+export const withDeletedAt = <T>(doc: T, useSnakeCase: boolean): T => {
+  const prop = useSnakeCase ? 'deleted_at' : 'deletedAt'
+  doc[prop] = new Date()
+  return doc
+}

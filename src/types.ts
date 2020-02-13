@@ -36,16 +36,16 @@ export enum CrudOperation {
 type DatabaseHookEvent = 'before' | 'during' | 'after'
 
 /** Database hook context. */
-interface DatabaseHookContext {
+export interface DatabaseHookContext {
   operation: CrudOperation
   event: DatabaseHookEvent
 }
 
 /** Database hook "before" handler. */
-type DatabaseBeforeHookHandler = (
+type DatabaseBeforeHookHandler = <TArray extends any[]>(
   context: DatabaseHookContext,
-  ...args
-) => void | any[] | Promise<void> | Promise<any[]>
+  ...args: TArray
+) => void | TArray | Promise<void> | Promise<TArray>
 
 /** Database hook "after" handler. */
 type DatabaseAfterHookHandler = (
