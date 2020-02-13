@@ -26,3 +26,15 @@ $ yarn add @albert-team/mongol
 ```bash
 $ npm i @albert-team/mongol
 ```
+
+## USAGE
+
+### Quick Start
+
+### API Documentation
+
+Read more [here](https://albert-team.github.io/mongol).
+
+## CHANGELOG
+
+Read more [here](https://github.com/albert-team/mongol/blob/master/CHANGELOG.md).
