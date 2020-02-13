@@ -66,6 +66,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum"><a href="enums/crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class"><a href="classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a></li>
@@ -75,50 +81,201 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/databasehook.html" class="tsd-kind-icon">Database<wbr>Hook</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/databasehookcontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/schemaoptions.html" class="tsd-kind-icon">Schema<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias"><a href="globals.html#databaseafterhookhandler" class="tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#databasebeforehookhandler" class="tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#databaseerrorhookhandler" class="tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#databasehookevent" class="tsd-kind-icon">Database<wbr>Hook<wbr>Event</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable"><a href="globals.html#omitted_keywords" class="tsd-kind-icon">OMITTED_<wbr>KEYWORDS</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#omitted_json_schema_keywords" class="tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function"><a href="globals.html#removeunsupportedkeywords" class="tsd-kind-icon">remove<wbr>Unsupported<wbr>Keywords</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#removeproperties" class="tsd-kind-icon">remove<wbr>Properties</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="omitted_keywords" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> OMITTED_<wbr>KEYWORDS</h3>
-					<div class="tsd-signature tsd-kind-icon">OMITTED_<wbr>KEYWORDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&#x27;$ref&#x27;, &#x27;$schema&#x27;, &#x27;default&#x27;, &#x27;definitions&#x27;, &#x27;format&#x27;, &#x27;id&#x27;]</span></div>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="databaseafterhookhandler" class="tsd-anchor"></a>
+					<h3>Database<wbr>After<wbr>Hook<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/01d6033/src/utils.ts#L1">src/utils.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L51">src/types.ts:51</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Database hook &quot;after&quot; handler.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>context: <a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a></h5>
+											</li>
+											<li>
+												<h5>result: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="databasebeforehookhandler" class="tsd-anchor"></a>
+					<h3>Database<wbr>Before<wbr>Hook<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L45">src/types.ts:45</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Database hook &quot;before&quot; handler.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>context: <a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="databaseerrorhookhandler" class="tsd-anchor"></a>
+					<h3>Database<wbr>Error<wbr>Hook<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L57">src/types.ts:57</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Database hook &quot;error&quot; handler.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>context: <a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a></h5>
+											</li>
+											<li>
+												<h5>error: <span class="tsd-signature-type">Error</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="databasehookevent" class="tsd-anchor"></a>
+					<h3>Database<wbr>Hook<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>Hook<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"before"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"during"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"after"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L36">src/types.ts:36</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Database hook event.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="omitted_json_schema_keywords" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</h3>
+					<div class="tsd-signature tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&#x27;$ref&#x27;,&#x27;$schema&#x27;,&#x27;default&#x27;,&#x27;definitions&#x27;,&#x27;format&#x27;,&#x27;id&#x27;]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/constants.ts#L2">src/constants.ts:2</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>JSON Schema keywords that MongoDB does not support.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="removeunsupportedkeywords" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> remove<wbr>Unsupported<wbr>Keywords</h3>
+					<a name="removeproperties" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> remove<wbr>Properties</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Unsupported<wbr>Keywords<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, removeType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Properties<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, keys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/01d6033/src/utils.ts#L3">src/utils.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/utils.ts#L1">src/utils.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -127,7 +284,7 @@
 									<h5>schema: <span class="tsd-signature-type">object</span></h5>
 								</li>
 								<li>
-									<h5>removeType: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>keys: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -146,6 +303,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
 					</li>
@@ -153,13 +313,31 @@
 						<a href="classes/mongol.html" class="tsd-kind-icon">Mongol</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/databasehook.html" class="tsd-kind-icon">Database<wbr>Hook</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/databasehookcontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/schemaoptions.html" class="tsd-kind-icon">Schema<wbr>Options</a>
 					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#databaseafterhookhandler" class="tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#databasebeforehookhandler" class="tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#databaseerrorhookhandler" class="tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#databasehookevent" class="tsd-kind-icon">Database<wbr>Hook<wbr>Event</a>
+					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#omitted_keywords" class="tsd-kind-icon">OMITTED_<wbr>KEYWORDS</a>
+						<a href="globals.html#omitted_json_schema_keywords" class="tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#removeunsupportedkeywords" class="tsd-kind-icon">remove<wbr>Unsupported<wbr>Keywords</a>
+						<a href="globals.html#removeproperties" class="tsd-kind-icon">remove<wbr>Properties</a>
 					</li>
 				</ul>
 			</nav>
