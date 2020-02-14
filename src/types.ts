@@ -76,5 +76,5 @@ export interface SchemaOptions {
 /** Options for [[autoTimestamp]] hook. */
 export interface AutoTimestampOptions {
   /** Naming conventions in source code and in database, default to [NamingConvention.Unchanged, NamingConvention.CamelCase]. */
-  namingConventions: [NamingConvention, NamingConvention]
+  namingConventions?: [NamingConvention, NamingConvention]
 }

@@ -7,7 +7,7 @@ import {
 } from '../types'
 import { withTimestamp } from '../utils'
 
-export const autoTimestamp = (options: AutoTimestampOptions): DatabaseHook => {
+export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook => {
   const {
     namingConventions = [NamingConvention.Unchanged, NamingConvention.CamelCase]
   } = options
