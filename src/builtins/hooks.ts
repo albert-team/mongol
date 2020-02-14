@@ -1,8 +1,16 @@
-import { AutoTimestampOptions, CrudOperation, DatabaseHook } from '../types'
-import { withCreatedAt, withUpdatedAt } from '../utils'
+import {
+  AutoTimestampOptions,
+  CrudOperation,
+  DatabaseHook,
+  NamingConvention
+} from '../types'
+import { withTimestamp } from '../utils'
 
 export const autoTimestamp = (options: AutoTimestampOptions): DatabaseHook => {
-  const { useSnakeCase = false } = options
+  const {
+    namingConventions = [NamingConvention.Unchanged, NamingConvention.CamelCase]
+  } = options
+  const dbNC = namingConventions[1]
 
   return {
     before: (context, ...args) => {
@@ -10,7 +18,8 @@ export const autoTimestamp = (options: AutoTimestampOptions): DatabaseHook => {
 
       if ([CrudOperation.FindOneAndReplace, CrudOperation.ReplaceOne].includes(op)) {
         // args = filter, replacement, options
-        args[1] = withUpdatedAt(args[1], useSnakeCase)
+        const propName = dbNC === NamingConvention.SnakeCase ? 'updated_at' : 'updatedAt'
+        args[1] = withTimestamp(args[1], propName)
       } else if (
         [
           CrudOperation.FindOneAndUpdate,
@@ -19,16 +28,16 @@ export const autoTimestamp = (options: AutoTimestampOptions): DatabaseHook => {
         ].includes(op)
       ) {
         // args = filter, update, options
-        args[1] = {
-          ...args[1],
-          $currentDate: { [useSnakeCase ? 'updated_at' : 'updatedAt']: true }
-        }
+        const propName = dbNC === NamingConvention.SnakeCase ? 'updated_at' : 'updatedAt'
+        args[1] = { ...args[1], $currentDate: { [propName]: true } }
       } else if (op === CrudOperation.InsertMany) {
         // args = docs, options
-        args[0] = args[0].map((doc) => withCreatedAt(doc, useSnakeCase))
+        const propName = dbNC === NamingConvention.SnakeCase ? 'created_at' : 'createdAt'
+        args[0] = args[0].map((doc) => withTimestamp(doc, propName))
       } else if (op === CrudOperation.InsertOne) {
         // args = doc, options
-        args[0] = withCreatedAt(args[0], useSnakeCase)
+        const propName = dbNC === NamingConvention.SnakeCase ? 'created_at' : 'createdAt'
+        args[0] = withTimestamp(args[0], propName)
       }
 
       return args

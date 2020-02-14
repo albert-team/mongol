@@ -1,3 +1,10 @@
+/** Naming conventions. */
+export enum NamingConvention {
+  Unchanged = 'unchanged',
+  CamelCase = 'camelcase',
+  SnakeCase = 'snakecase'
+}
+
 /** CRUD operations supported by MongoDB [[Collection]].
  *
  * Mongol does not support all operations, especially deprecated ones.
@@ -68,6 +75,6 @@ export interface SchemaOptions {
 
 /** Options for [[autoTimestamp]] hook. */
 export interface AutoTimestampOptions {
-  /** Use snake_case instead of camelCase (default). */
-  useSnakeCase?: boolean
+  /** Naming conventions in source code and in database, default to [NamingConvention.Unchanged, NamingConvention.CamelCase]. */
+  namingConventions: [NamingConvention, NamingConvention]
 }
