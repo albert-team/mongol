@@ -1,15 +1,8 @@
-/**
- * Options when setting JSON schemas.
- */
-export interface SchemaOptions {
-  /**
-   * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
-   * @see OMITTED_JSON_SCHEMA_KEYWORDS
-   */
-  ignoreUnsupportedKeywords?: boolean
-  /** Ignore "type" keyword, so as not to conflict with "bsonType".
-   */
-  ignoreType?: boolean
+/** Naming conventions. */
+export enum NamingConvention {
+  Unchanged = 'unchanged',
+  CamelCase = 'camelcase',
+  SnakeCase = 'snakecase'
 }
 
 /** CRUD operations supported by MongoDB [[Collection]].
@@ -36,16 +29,16 @@ export enum CrudOperation {
 type DatabaseHookEvent = 'before' | 'during' | 'after'
 
 /** Database hook context. */
-interface DatabaseHookContext {
+export interface DatabaseHookContext {
   operation: CrudOperation
   event: DatabaseHookEvent
 }
 
 /** Database hook "before" handler. */
-type DatabaseBeforeHookHandler = (
+type DatabaseBeforeHookHandler = <TArray extends any[]>(
   context: DatabaseHookContext,
-  ...args
-) => void | any[] | Promise<void> | Promise<any[]>
+  ...args: TArray
+) => void | TArray | Promise<void> | Promise<TArray>
 
 /** Database hook "after" handler. */
 type DatabaseAfterHookHandler = (
@@ -64,4 +57,24 @@ export interface DatabaseHook {
   before?: DatabaseBeforeHookHandler
   after?: DatabaseAfterHookHandler
   error?: DatabaseErrorHookHandler
+}
+
+/**
+ * Options when setting JSON schemas.
+ */
+export interface SchemaOptions {
+  /**
+   * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
+   * @see OMITTED_JSON_SCHEMA_KEYWORDS
+   */
+  ignoreUnsupportedKeywords?: boolean
+  /** Ignore "type" keyword, so as not to conflict with "bsonType".
+   */
+  ignoreType?: boolean
+}
+
+/** Options for [[autoTimestamp]] hook. */
+export interface AutoTimestampOptions {
+  /** Naming conventions in source code and in database, default to [NamingConvention.Unchanged, NamingConvention.CamelCase]. */
+  namingConventions?: [NamingConvention, NamingConvention]
 }
