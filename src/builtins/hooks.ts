@@ -1,16 +1,11 @@
-import { DatabaseHook, DatabaseHookContext, CrudOperation } from '../types'
+import { AutoTimestampOptions, CrudOperation, DatabaseHook } from '../types'
 import { withCreatedAt, withUpdatedAt } from '../utils'
-
-interface AutoTimestampOptions {
-  useSnakeCase?: boolean
-  // softDelete?: boolean
-}
 
 export const autoTimestamp = (options: AutoTimestampOptions): DatabaseHook => {
   const { useSnakeCase = false } = options
 
-  const hook: DatabaseHook = {
-    before: (context: DatabaseHookContext, ...args) => {
+  return {
+    before: (context, ...args) => {
       const { operation: op } = context
 
       if ([CrudOperation.FindOneAndReplace, CrudOperation.ReplaceOne].includes(op)) {
@@ -38,7 +33,5 @@ export const autoTimestamp = (options: AutoTimestampOptions): DatabaseHook => {
 
       return args
     }
-  }
-
-  return hook
+  } as DatabaseHook
 }

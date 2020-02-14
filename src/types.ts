@@ -1,17 +1,3 @@
-/**
- * Options when setting JSON schemas.
- */
-export interface SchemaOptions {
-  /**
-   * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
-   * @see OMITTED_JSON_SCHEMA_KEYWORDS
-   */
-  ignoreUnsupportedKeywords?: boolean
-  /** Ignore "type" keyword, so as not to conflict with "bsonType".
-   */
-  ignoreType?: boolean
-}
-
 /** CRUD operations supported by MongoDB [[Collection]].
  *
  * Mongol does not support all operations, especially deprecated ones.
@@ -64,4 +50,24 @@ export interface DatabaseHook {
   before?: DatabaseBeforeHookHandler
   after?: DatabaseAfterHookHandler
   error?: DatabaseErrorHookHandler
+}
+
+/**
+ * Options when setting JSON schemas.
+ */
+export interface SchemaOptions {
+  /**
+   * Ignore some JSON schema keywords MongoDB does not support, instead of throwing errors.
+   * @see OMITTED_JSON_SCHEMA_KEYWORDS
+   */
+  ignoreUnsupportedKeywords?: boolean
+  /** Ignore "type" keyword, so as not to conflict with "bsonType".
+   */
+  ignoreType?: boolean
+}
+
+/** Options for [[autoTimestamp]] hook. */
+export interface AutoTimestampOptions {
+  /** Use snake_case instead of camelCase (default). */
+  useSnakeCase?: boolean
 }
