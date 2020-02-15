@@ -98,8 +98,8 @@ export interface SchemaOptions {
   ignoreType?: boolean
 }
 
-/** Options for [[autoTimestamp]] hook. */
-export interface AutoTimestampOptions {
+/** Timestamp hook options. */
+export interface TimestampHookOptions {
   /** Naming conventions in source code and in database, default to [NamingConvention.Unchanged, NamingConvention.CamelCase]. */
   namingConventions?: [NamingConvention, NamingConvention]
 }

@@ -1,13 +1,14 @@
 import { INSERT_OPERATIONS, REPLACE_OPERATIONS, UPDATE_OPERATIONS } from '../constants'
 import {
-  AutoTimestampOptions,
   CrudOperation,
   DatabaseHook,
-  NamingConvention
+  NamingConvention,
+  TimestampHookOptions
 } from '../types'
 import { withTimestamp } from '../utils'
 
-export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook => {
+/** Timestamp hook factory function. */
+export const createTimestampHook = (options: TimestampHookOptions = {}): DatabaseHook => {
   const {
     namingConventions = [NamingConvention.Unchanged, NamingConvention.CamelCase]
   } = options
@@ -52,3 +53,8 @@ export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook 
     }
   } as DatabaseHook
 }
+
+/**
+ * @deprecated Since v0.5.0. Use [[createTimestampHook]] instead.
+ */
+export const autoTimestamp = createTimestampHook
