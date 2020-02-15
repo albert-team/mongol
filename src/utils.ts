@@ -1,11 +1,11 @@
 import { DELETE_OPERATIONS, REPLACE_OPERATIONS, UPDATE_OPERATIONS } from './constants'
 import { CrudOperation, ParsedCrudOperationArgs } from './types'
 
-export const removeProperties = (schema: object, propNames: string[]): object => {
+export const removeProperties = (schema: object, propNames: Set<string>): object => {
   const result = {}
 
   for (const [k, v] of Object.entries(schema)) {
-    if (propNames.includes(k)) continue
+    if (propNames.has(k)) continue
 
     if (v instanceof Array) {
       result[k] = v.map((item) => {
@@ -36,9 +36,9 @@ export const parsedCrudOperationArgs = <TArray extends any[]>(
 
   if (op === CrudOperation.InsertOne) [documents[0], options] = args
   else if (op === CrudOperation.InsertMany) [documents, options] = args
-  else if (UPDATE_OPERATIONS.includes(op)) [query, update, options] = args
-  else if (REPLACE_OPERATIONS.includes(op)) [query, documents[0], options] = args
-  else if (DELETE_OPERATIONS.includes(op)) [query, options] = args
+  else if (UPDATE_OPERATIONS.has(op)) [query, update, options] = args
+  else if (REPLACE_OPERATIONS.has(op)) [query, documents[0], options] = args
+  else if (DELETE_OPERATIONS.has(op)) [query, options] = args
   else if (op === CrudOperation.BulkWrite) [subOperations, options] = args
 
   return { query, documents, update, subOperations, options }
@@ -53,9 +53,9 @@ export const unparseCrudOperationArgs = (
 
   if (op === CrudOperation.InsertOne) args = [documents[0], options]
   else if (op === CrudOperation.InsertMany) args = [documents, options]
-  else if (UPDATE_OPERATIONS.includes(op)) args = [query, update, options]
-  else if (REPLACE_OPERATIONS.includes(op)) args = [query, documents[0], options]
-  else if (DELETE_OPERATIONS.includes(op)) args = [query, options]
+  else if (UPDATE_OPERATIONS.has(op)) args = [query, update, options]
+  else if (REPLACE_OPERATIONS.has(op)) args = [query, documents[0], options]
+  else if (DELETE_OPERATIONS.has(op)) args = [query, options]
   else if (op === CrudOperation.BulkWrite) args = [subOperations, options]
 
   return args

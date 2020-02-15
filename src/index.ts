@@ -78,9 +78,10 @@ export class Mongol {
   ): Promise<void> {
     const { ignoreUnsupportedKeywords = true, ignoreType = false } = options
     const db = await this.promisifiedDatabase
-    const propNames = [] // properties to remove
-    if (ignoreUnsupportedKeywords) propNames.push(...OMITTED_JSON_SCHEMA_KEYWORDS)
-    if (ignoreType) propNames.push('type')
+    const propNames = new Set<string>(
+      ignoreUnsupportedKeywords ? OMITTED_JSON_SCHEMA_KEYWORDS : []
+    )
+    if (ignoreType) propNames.add('type')
     schema = removeProperties(schema, propNames)
 
     const collections = await db.collections()

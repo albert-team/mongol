@@ -21,11 +21,11 @@ export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook 
       const { query, options } = args
       let { documents, update, subOperations } = args
 
-      if (INSERT_OPERATIONS.includes(op))
+      if (INSERT_OPERATIONS.has(op))
         documents = documents.map((doc) => withTimestamp(doc, caPropName))
-      else if (UPDATE_OPERATIONS.includes(op))
+      else if (UPDATE_OPERATIONS.has(op))
         update = { ...update, $currentDate: { [uaPropName]: true } }
-      else if (REPLACE_OPERATIONS.includes(op))
+      else if (REPLACE_OPERATIONS.has(op))
         documents = documents.map((doc) => withTimestamp(doc, uaPropName))
       else if (op === CrudOperation.BulkWrite)
         subOperations = subOperations.map((subOp) => {
