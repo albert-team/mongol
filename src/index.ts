@@ -4,7 +4,7 @@ import { DbNotFoundError } from './errors'
 import { CrudOperation, DatabaseHook, SchemaOptions } from './types'
 import {
   isParsedCrudOperationArgs,
-  parsedCrudOperationArgs,
+  parseCrudOperationArgs,
   removeProperties,
   unparseCrudOperationArgs
 } from './utils'
@@ -132,7 +132,7 @@ export class Mongol {
       let newArgs: any[]
       try {
         if (hook.before) {
-          const parsedArgs = parsedCrudOperationArgs(operation, args)
+          const parsedArgs = parseCrudOperationArgs(operation, args)
           const result = await hook.before(
             { operation, event: 'before', arguments: parsedArgs },
             args

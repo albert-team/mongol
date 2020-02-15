@@ -24,7 +24,7 @@ export const withTimestamp = <T>(doc: T, propName: string): T => {
   return doc
 }
 
-export const parsedCrudOperationArgs = <TArray extends any[]>(
+export const parseCrudOperationArgs = <TArray extends any[]>(
   op: CrudOperation,
   args: TArray
 ): ParsedCrudOperationArgs => {
