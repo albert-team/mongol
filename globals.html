@@ -69,6 +69,7 @@
 							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-enum"><a href="enums/crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a></li>
+								<li class="tsd-kind-enum"><a href="enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -81,30 +82,42 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/autotimestampoptions.html" class="tsd-kind-icon">Auto<wbr>Timestamp<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/databasehook.html" class="tsd-kind-icon">Database<wbr>Hook</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/databasehookbeforecontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/databasehookcontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Context</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/schemaoptions.html" class="tsd-kind-icon">Schema<wbr>Options</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias"><a href="globals.html#databaseafterhookhandler" class="tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler</a></li>
-								<li class="tsd-kind-type-alias"><a href="globals.html#databasebeforehookhandler" class="tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler</a></li>
-								<li class="tsd-kind-type-alias"><a href="globals.html#databaseerrorhookhandler" class="tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#databasehookafterhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>After<wbr>Handler</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#databasehookbeforehandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Handler</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#databasehookerrorhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#databasehookevent" class="tsd-kind-icon">Database<wbr>Hook<wbr>Event</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable"><a href="globals.html#delete_operations" class="tsd-kind-icon">DELETE_<wbr>OPERATIONS</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#insert_operations" class="tsd-kind-icon">INSERT_<wbr>OPERATIONS</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#omitted_json_schema_keywords" class="tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#replace_operations" class="tsd-kind-icon">REPLACE_<wbr>OPERATIONS</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#update_operations" class="tsd-kind-icon">UPDATE_<wbr>OPERATIONS</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function"><a href="globals.html#autotimestamp" class="tsd-kind-icon">auto<wbr>Timestamp</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#isparsedcrudoperationargs" class="tsd-kind-icon">is<wbr>Parsed<wbr>Crud<wbr>Operation<wbr>Args</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#parsedcrudoperationargs" class="tsd-kind-icon">parsed<wbr>Crud<wbr>Operation<wbr>Args</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#removeproperties" class="tsd-kind-icon">remove<wbr>Properties</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#unparsecrudoperationargs" class="tsd-kind-icon">unparse<wbr>Crud<wbr>Operation<wbr>Args</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#withtimestamp" class="tsd-kind-icon">with<wbr>Timestamp</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,12 +126,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
-					<a name="databaseafterhookhandler" class="tsd-anchor"></a>
-					<h3>Database<wbr>After<wbr>Hook<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="databasehookafterhandler" class="tsd-anchor"></a>
+					<h3>Database<wbr>Hook<wbr>After<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>Hook<wbr>After<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L51">src/types.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L69">src/types.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -152,12 +165,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
-					<a name="databasebeforehookhandler" class="tsd-anchor"></a>
-					<h3>Database<wbr>Before<wbr>Hook<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="databasehookbeforehandler" class="tsd-anchor"></a>
+					<h3>Database<wbr>Hook<wbr>Before<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Handler<span class="tsd-signature-symbol">:</span> &lt;TArray&gt;<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookbeforecontext.html" class="tsd-signature-type">DatabaseHookBeforeContext</a>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L45">src/types.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L57">src/types.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -169,21 +182,27 @@
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;TArray&gt;<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookbeforecontext.html" class="tsd-signature-type">DatabaseHookBeforeContext</a>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<h4 class="tsd-type-parameters-title">Type parameters</h4>
+										<ul class="tsd-type-parameters">
+											<li>
+												<h4>TArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+											</li>
+										</ul>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>context: <a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a></h5>
+												<h5>context: <a href="interfaces/databasehookbeforecontext.html" class="tsd-signature-type">DatabaseHookBeforeContext</a></h5>
 											</li>
 											<li>
-												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+												<h5>args: <span class="tsd-signature-type">TArray</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -191,12 +210,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
-					<a name="databaseerrorhookhandler" class="tsd-anchor"></a>
-					<h3>Database<wbr>Error<wbr>Hook<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="databasehookerrorhandler" class="tsd-anchor"></a>
+					<h3>Database<wbr>Hook<wbr>Error<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L57">src/types.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L75">src/types.ts:75</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -235,7 +254,7 @@
 					<div class="tsd-signature tsd-kind-icon">Database<wbr>Hook<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"before"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"during"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"after"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L36">src/types.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L29">src/types.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,12 +267,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="omitted_json_schema_keywords" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</h3>
-					<div class="tsd-signature tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&#x27;$ref&#x27;,&#x27;$schema&#x27;,&#x27;default&#x27;,&#x27;definitions&#x27;,&#x27;format&#x27;,&#x27;id&#x27;]</span></div>
+					<a name="delete_operations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> DELETE_<wbr>OPERATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">DELETE_<wbr>OPERATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set([CrudOperation.DeleteMany,CrudOperation.DeleteOne,CrudOperation.FindOneAndDelete])</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/constants.ts#L2">src/constants.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/constants.ts#L29">src/constants.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="insert_operations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> INSERT_<wbr>OPERATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">INSERT_<wbr>OPERATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set([CrudOperation.InsertMany,CrudOperation.InsertOne])</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/constants.ts#L13">src/constants.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="omitted_json_schema_keywords" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</h3>
+					<div class="tsd-signature tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set([&#x27;$ref&#x27;,&#x27;$schema&#x27;,&#x27;default&#x27;,&#x27;definitions&#x27;,&#x27;format&#x27;,&#x27;id&#x27;])</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/constants.ts#L4">src/constants.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,20 +301,118 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="replace_operations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> REPLACE_<wbr>OPERATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">REPLACE_<wbr>OPERATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set([CrudOperation.FindOneAndReplace,CrudOperation.ReplaceOne])</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/constants.ts#L24">src/constants.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="update_operations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> UPDATE_<wbr>OPERATIONS</h3>
+					<div class="tsd-signature tsd-kind-icon">UPDATE_<wbr>OPERATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Set([CrudOperation.FindOneAndUpdate,CrudOperation.UpdateMany,CrudOperation.UpdateOne])</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/constants.ts#L18">src/constants.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="removeproperties" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> remove<wbr>Properties</h3>
+					<a name="autotimestamp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> auto<wbr>Timestamp</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Properties<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, keys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">auto<wbr>Timestamp<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="interfaces/autotimestampoptions.html" class="tsd-signature-type">AutoTimestampOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/databasehook.html" class="tsd-signature-type">DatabaseHook</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/utils.ts#L1">src/utils.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/builtins/hooks.ts#L10">src/builtins/hooks.ts:10</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="interfaces/autotimestampoptions.html" class="tsd-signature-type">AutoTimestampOptions</a><span class="tsd-signature-symbol"> = {}</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/databasehook.html" class="tsd-signature-type">DatabaseHook</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="isparsedcrudoperationargs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Parsed<wbr>Crud<wbr>Operation<wbr>Args</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Parsed<wbr>Crud<wbr>Operation<wbr>Args<span class="tsd-signature-symbol">(</span>test<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">test</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">ParsedCrudOperationArgs</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/utils.ts#L64">src/utils.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>test: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">test</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">ParsedCrudOperationArgs</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="parsedcrudoperationargs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> parsed<wbr>Crud<wbr>Operation<wbr>Args</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">parsed<wbr>Crud<wbr>Operation<wbr>Args&lt;TArray&gt;<span class="tsd-signature-symbol">(</span>op<span class="tsd-signature-symbol">: </span><a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/utils.ts#L27">src/utils.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>op: <a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a></h5>
+								</li>
+								<li>
+									<h5>args: <span class="tsd-signature-type">TArray</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="removeproperties" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> remove<wbr>Properties</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Properties<span class="tsd-signature-symbol">(</span>schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propNames<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/utils.ts#L4">src/utils.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -284,10 +421,68 @@
 									<h5>schema: <span class="tsd-signature-type">object</span></h5>
 								</li>
 								<li>
-									<h5>keys: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>propNames: <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="unparsecrudoperationargs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> unparse<wbr>Crud<wbr>Operation<wbr>Args</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">unparse<wbr>Crud<wbr>Operation<wbr>Args<span class="tsd-signature-symbol">(</span>op<span class="tsd-signature-symbol">: </span><a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a>, parsedArgs<span class="tsd-signature-symbol">: </span><a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/utils.ts#L47">src/utils.ts:47</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>op: <a href="enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a></h5>
+								</li>
+								<li>
+									<h5>parsedArgs: <a href="interfaces/parsedcrudoperationargs.html" class="tsd-signature-type">ParsedCrudOperationArgs</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="withtimestamp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> with<wbr>Timestamp</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Timestamp&lt;T&gt;<span class="tsd-signature-symbol">(</span>doc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/utils.ts#L22">src/utils.ts:22</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>doc: <span class="tsd-signature-type">T</span></h5>
+								</li>
+								<li>
+									<h5>propName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -306,6 +501,9 @@
 					<li class=" tsd-kind-enum">
 						<a href="enums/crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a>
 					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
 					</li>
@@ -313,31 +511,67 @@
 						<a href="classes/mongol.html" class="tsd-kind-icon">Mongol</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/autotimestampoptions.html" class="tsd-kind-icon">Auto<wbr>Timestamp<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/databasehook.html" class="tsd-kind-icon">Database<wbr>Hook</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/databasehookbeforecontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/databasehookcontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/schemaoptions.html" class="tsd-kind-icon">Schema<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#databaseafterhookhandler" class="tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler</a>
+						<a href="globals.html#databasehookafterhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>After<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#databasebeforehookhandler" class="tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler</a>
+						<a href="globals.html#databasehookbeforehandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#databaseerrorhookhandler" class="tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler</a>
+						<a href="globals.html#databasehookerrorhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#databasehookevent" class="tsd-kind-icon">Database<wbr>Hook<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="globals.html#delete_operations" class="tsd-kind-icon">DELETE_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#insert_operations" class="tsd-kind-icon">INSERT_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="globals.html#omitted_json_schema_keywords" class="tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#replace_operations" class="tsd-kind-icon">REPLACE_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#update_operations" class="tsd-kind-icon">UPDATE_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#autotimestamp" class="tsd-kind-icon">auto<wbr>Timestamp</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isparsedcrudoperationargs" class="tsd-kind-icon">is<wbr>Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#parsedcrudoperationargs" class="tsd-kind-icon">parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#removeproperties" class="tsd-kind-icon">remove<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#unparsecrudoperationargs" class="tsd-kind-icon">unparse<wbr>Crud<wbr>Operation<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#withtimestamp" class="tsd-kind-icon">with<wbr>Timestamp</a>
 					</li>
 				</ul>
 			</nav>

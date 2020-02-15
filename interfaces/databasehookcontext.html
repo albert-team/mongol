@@ -76,6 +76,11 @@
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">DatabaseHookContext</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="databasehookbeforecontext.html" class="tsd-signature-type">DatabaseHookBeforeContext</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -101,7 +106,7 @@
 					<div class="tsd-signature tsd-kind-icon">event<span class="tsd-signature-symbol">:</span> <a href="../globals.html#databasehookevent" class="tsd-signature-type">DatabaseHookEvent</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L41">src/types.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L48">src/types.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -111,7 +116,7 @@
 					<div class="tsd-signature tsd-kind-icon">operation<span class="tsd-signature-symbol">:</span> <a href="../enums/crudoperation.html" class="tsd-signature-type">CrudOperation</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/4b7b425/src/types.ts#L40">src/types.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L47">src/types.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -130,6 +135,9 @@
 					<li class=" tsd-kind-enum">
 						<a href="../enums/crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a>
 					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
 					</li>
@@ -137,7 +145,13 @@
 						<a href="../classes/mongol.html" class="tsd-kind-icon">Mongol</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="autotimestampoptions.html" class="tsd-kind-icon">Auto<wbr>Timestamp<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="databasehook.html" class="tsd-kind-icon">Database<wbr>Hook</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="databasehookbeforecontext.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Context</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -155,25 +169,55 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
+						<a href="parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="schemaoptions.html" class="tsd-kind-icon">Schema<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#databaseafterhookhandler" class="tsd-kind-icon">Database<wbr>After<wbr>Hook<wbr>Handler</a>
+						<a href="../globals.html#databasehookafterhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>After<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#databasebeforehookhandler" class="tsd-kind-icon">Database<wbr>Before<wbr>Hook<wbr>Handler</a>
+						<a href="../globals.html#databasehookbeforehandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>Before<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#databaseerrorhookhandler" class="tsd-kind-icon">Database<wbr>Error<wbr>Hook<wbr>Handler</a>
+						<a href="../globals.html#databasehookerrorhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#databasehookevent" class="tsd-kind-icon">Database<wbr>Hook<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="../globals.html#delete_operations" class="tsd-kind-icon">DELETE_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#insert_operations" class="tsd-kind-icon">INSERT_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="../globals.html#omitted_json_schema_keywords" class="tsd-kind-icon">OMITTED_<wbr>JSON_<wbr>SCHEMA_<wbr>KEYWORDS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#replace_operations" class="tsd-kind-icon">REPLACE_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#update_operations" class="tsd-kind-icon">UPDATE_<wbr>OPERATIONS</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#autotimestamp" class="tsd-kind-icon">auto<wbr>Timestamp</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#isparsedcrudoperationargs" class="tsd-kind-icon">is<wbr>Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../globals.html#parsedcrudoperationargs" class="tsd-kind-icon">parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#removeproperties" class="tsd-kind-icon">remove<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#unparsecrudoperationargs" class="tsd-kind-icon">unparse<wbr>Crud<wbr>Operation<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../globals.html#withtimestamp" class="tsd-kind-icon">with<wbr>Timestamp</a>
 					</li>
 				</ul>
 			</nav>

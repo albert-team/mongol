@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CrudOperation | @albert-team/mongol</title>
+	<title>NamingConvention | @albert-team/mongol</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="crudoperation.html">CrudOperation</a>
+					<a href="namingconvention.html">NamingConvention</a>
 				</li>
 			</ul>
-			<h1>Enumeration CrudOperation</h1>
+			<h1>Enumeration NamingConvention</h1>
 		</div>
 	</div>
 </header>
@@ -67,9 +67,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>CRUD operations supported by MongoDB [[Collection]].</p>
+						<p>Naming conventions.</p>
 					</div>
-					<p>Mongol does not support all operations, especially deprecated ones.</p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -79,17 +78,9 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#bulkwrite" class="tsd-kind-icon">Bulk<wbr>Write</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#deletemany" class="tsd-kind-icon">Delete<wbr>Many</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#deleteone" class="tsd-kind-icon">Delete<wbr>One</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#findoneanddelete" class="tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Delete</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#findoneandreplace" class="tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Replace</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#findoneandupdate" class="tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Update</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#insertmany" class="tsd-kind-icon">Insert<wbr>Many</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#insertone" class="tsd-kind-icon">Insert<wbr>One</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#replaceone" class="tsd-kind-icon">Replace<wbr>One</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#updatemany" class="tsd-kind-icon">Update<wbr>Many</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="crudoperation.html#updateone" class="tsd-kind-icon">Update<wbr>One</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="namingconvention.html#camelcase" class="tsd-kind-icon">Camel<wbr>Case</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="namingconvention.html#snakecase" class="tsd-kind-icon">Snake<wbr>Case</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="namingconvention.html#unchanged" class="tsd-kind-icon">Unchanged</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,112 +89,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="bulkwrite" class="tsd-anchor"></a>
-					<h3>Bulk<wbr>Write</h3>
-					<div class="tsd-signature tsd-kind-icon">Bulk<wbr>Write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;bulkWrite&quot;</span></div>
+					<a name="camelcase" class="tsd-anchor"></a>
+					<h3>Camel<wbr>Case</h3>
+					<div class="tsd-signature tsd-kind-icon">Camel<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;camelcase&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L13">src/types.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L4">src/types.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="deletemany" class="tsd-anchor"></a>
-					<h3>Delete<wbr>Many</h3>
-					<div class="tsd-signature tsd-kind-icon">Delete<wbr>Many<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;deleteMany&quot;</span></div>
+					<a name="snakecase" class="tsd-anchor"></a>
+					<h3>Snake<wbr>Case</h3>
+					<div class="tsd-signature tsd-kind-icon">Snake<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;snakecase&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L14">src/types.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L5">src/types.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="deleteone" class="tsd-anchor"></a>
-					<h3>Delete<wbr>One</h3>
-					<div class="tsd-signature tsd-kind-icon">Delete<wbr>One<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;deleteOne&quot;</span></div>
+					<a name="unchanged" class="tsd-anchor"></a>
+					<h3>Unchanged</h3>
+					<div class="tsd-signature tsd-kind-icon">Unchanged<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;unchanged&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L15">src/types.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="findoneanddelete" class="tsd-anchor"></a>
-					<h3>Find<wbr>One<wbr>And<wbr>Delete</h3>
-					<div class="tsd-signature tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;findOneAndDelete&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L18">src/types.ts:18</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="findoneandreplace" class="tsd-anchor"></a>
-					<h3>Find<wbr>One<wbr>And<wbr>Replace</h3>
-					<div class="tsd-signature tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Replace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;findOneAndReplace&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L19">src/types.ts:19</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="findoneandupdate" class="tsd-anchor"></a>
-					<h3>Find<wbr>One<wbr>And<wbr>Update</h3>
-					<div class="tsd-signature tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;findOneAndUpdate&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L20">src/types.ts:20</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="insertmany" class="tsd-anchor"></a>
-					<h3>Insert<wbr>Many</h3>
-					<div class="tsd-signature tsd-kind-icon">Insert<wbr>Many<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;insertMany&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L21">src/types.ts:21</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="insertone" class="tsd-anchor"></a>
-					<h3>Insert<wbr>One</h3>
-					<div class="tsd-signature tsd-kind-icon">Insert<wbr>One<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;insertOne&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L22">src/types.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="replaceone" class="tsd-anchor"></a>
-					<h3>Replace<wbr>One</h3>
-					<div class="tsd-signature tsd-kind-icon">Replace<wbr>One<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;replaceOne&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L23">src/types.ts:23</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="updatemany" class="tsd-anchor"></a>
-					<h3>Update<wbr>Many</h3>
-					<div class="tsd-signature tsd-kind-icon">Update<wbr>Many<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;updateMany&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L24">src/types.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="updateone" class="tsd-anchor"></a>
-					<h3>Update<wbr>One</h3>
-					<div class="tsd-signature tsd-kind-icon">Update<wbr>One<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;updateOne&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L25">src/types.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L3">src/types.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -219,51 +130,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum">
-						<a href="crudoperation.html" class="tsd-kind-icon">Crud<wbr>Operation</a>
+						<a href="namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#bulkwrite" class="tsd-kind-icon">Bulk<wbr>Write</a>
+								<a href="namingconvention.html#camelcase" class="tsd-kind-icon">Camel<wbr>Case</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#deletemany" class="tsd-kind-icon">Delete<wbr>Many</a>
+								<a href="namingconvention.html#snakecase" class="tsd-kind-icon">Snake<wbr>Case</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#deleteone" class="tsd-kind-icon">Delete<wbr>One</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#findoneanddelete" class="tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Delete</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#findoneandreplace" class="tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Replace</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#findoneandupdate" class="tsd-kind-icon">Find<wbr>One<wbr>And<wbr>Update</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#insertmany" class="tsd-kind-icon">Insert<wbr>Many</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#insertone" class="tsd-kind-icon">Insert<wbr>One</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#replaceone" class="tsd-kind-icon">Replace<wbr>One</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#updatemany" class="tsd-kind-icon">Update<wbr>Many</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="crudoperation.html#updateone" class="tsd-kind-icon">Update<wbr>One</a>
+								<a href="namingconvention.html#unchanged" class="tsd-kind-icon">Unchanged</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-enum">
-						<a href="namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
 					</li>
