@@ -6,6 +6,12 @@
 
 Minimalistic MongoDB helpers for Node.js
 
+## FEATURES
+
+- Enhanced JSON Schema draft-4 support
+- Database hook/trigger support
+- Useful builtin hooks
+
 ## INSTALLATION
 
 ### Requirements
@@ -29,9 +35,13 @@ $ npm i @albert-team/mongol
 
 ## USAGE
 
-### Quick Start
+### Enhanced JSON Schema draft-4 support
 
-### API Documentation
+### Database hook/trigger support
+
+### Useful builtin hooks
+
+## API Documentation
 
 Read more [here](https://albert-team.github.io/mongol).
 
