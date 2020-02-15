@@ -1,4 +1,4 @@
-import { REPLACE_OPERATIONS, UPDATE_OPERATIONS } from '../constants'
+import { INSERT_OPERATIONS, REPLACE_OPERATIONS, UPDATE_OPERATIONS } from '../constants'
 import {
   AutoTimestampOptions,
   CrudOperation,
@@ -16,24 +16,19 @@ export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook 
   const uaPropName = dbNC === NamingConvention.SnakeCase ? 'updated_at' : 'updatedAt'
 
   return {
-    before: (context, ...args) => {
-      const { operation: op } = context
+    before: (context) => {
+      const { operation: op, arguments: args } = context
+      const { query, options } = args
+      let { documents, update, subOperations } = args
 
-      if (op === CrudOperation.InsertOne)
-        // args = doc, options
-        args[0] = withTimestamp(args[0], caPropName)
-      else if (op === CrudOperation.InsertMany)
-        // args = docs, options
-        args[0] = args[0].map((doc) => withTimestamp(doc, caPropName))
-      else if (UPDATE_OPERATIONS.includes(op))
-        // args = filter, update, options
-        args[1] = { ...args[1], $currentDate: { [uaPropName]: true } }
-      else if (REPLACE_OPERATIONS.includes(op))
-        // args = filter, replacement, options
-        args[1] = withTimestamp(args[1], uaPropName)
+      if (INSERT_OPERATIONS.has(op))
+        documents = documents.map((doc) => withTimestamp(doc, caPropName))
+      else if (UPDATE_OPERATIONS.has(op))
+        update = { ...update, $currentDate: { [uaPropName]: true } }
+      else if (REPLACE_OPERATIONS.has(op))
+        documents = documents.map((doc) => withTimestamp(doc, uaPropName))
       else if (op === CrudOperation.BulkWrite)
-        // args = operations, options
-        args[0] = args[0].map((subOp) => {
+        subOperations = subOperations.map((subOp) => {
           if (subOp.insertOne)
             subOp.insertOne.document = withTimestamp(subOp.insertOne.document, caPropName)
           else if (subOp.updateOne)
@@ -53,7 +48,7 @@ export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook 
             )
           return subOp
         })
-      return args
+      return { query, documents, update, subOperations, options }
     }
   } as DatabaseHook
 }

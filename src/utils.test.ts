@@ -131,6 +131,6 @@ test('removeProperties(), with type', () => {
   }
 
   expect(
-    removeProperties(sampleSchema, [...OMITTED_JSON_SCHEMA_KEYWORDS, 'type'])
+    removeProperties(sampleSchema, new Set([...OMITTED_JSON_SCHEMA_KEYWORDS, 'type']))
   ).toStrictEqual(result)
 })
