@@ -37,7 +37,7 @@ export interface ParsedCrudOperationArgs {
   /** In update operations. */
   update: object
   /** In bulkwrite operation. */
-  subOperations: object[]
+  subOperations: any[]
   /** In all operations. */
   options: object
 }

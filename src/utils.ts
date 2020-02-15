@@ -47,9 +47,9 @@ export const parsedCrudOperationArgs = <TArray extends any[]>(
 export const unparseCrudOperationArgs = (
   op: CrudOperation,
   parsedArgs: ParsedCrudOperationArgs
-): object[] => {
+): any[] => {
   const { query, documents, update, subOperations, options } = parsedArgs
-  let args: object[]
+  let args: any[]
 
   if (op === CrudOperation.InsertOne) args = [documents[0], options]
   else if (op === CrudOperation.InsertMany) args = [documents, options]
