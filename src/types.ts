@@ -29,17 +29,17 @@ export enum CrudOperation {
 type DatabaseHookEvent = 'before' | 'during' | 'after'
 
 /** Parsed CRUD operation arguments. */
-interface ParsedCrudOperationArgs {
+export interface ParsedCrudOperationArgs {
   /** In delete, replace, update operations. */
-  query?: object
+  query: object
   /** In insert, replace operations. */
-  documents?: object[]
+  documents: object[]
   /** In update operations. */
-  update?: object
+  update: object
   /** In bulkwrite operation. */
-  subOperations?: object[]
+  subOperations: object[]
   /** In all operations. */
-  options?: object
+  options: object
 }
 
 /** Database hook context. */
@@ -56,7 +56,7 @@ export interface DatabaseHookBeforeContext extends DatabaseHookContext {
 /** Database hook "before" handler. */
 type DatabaseHookBeforeHandler = <TArray extends any[]>(
   context: DatabaseHookBeforeContext,
-  ...args: TArray
+  args: TArray
 ) =>
   | void
   | TArray

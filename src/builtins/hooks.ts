@@ -16,7 +16,7 @@ export const autoTimestamp = (options: AutoTimestampOptions = {}): DatabaseHook 
   const uaPropName = dbNC === NamingConvention.SnakeCase ? 'updated_at' : 'updatedAt'
 
   return {
-    before: (context, ...args) => {
+    before: (context, args) => {
       const { operation: op } = context
 
       if (op === CrudOperation.InsertOne)

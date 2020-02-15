@@ -1,8 +1,13 @@
-import { MongoClient, Db, Collection } from 'mongodb'
+import { Collection, Db, MongoClient } from 'mongodb'
 import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
 import { DbNotFoundError } from './errors'
-import { SchemaOptions, DatabaseHook, CrudOperation } from './types'
-import { removeProperties } from './utils'
+import { CrudOperation, DatabaseHook, SchemaOptions } from './types'
+import {
+  isParsedCrudOperationArgs,
+  parsedCrudOperationArgs,
+  removeProperties,
+  unparseCrudOperationArgs
+} from './utils'
 
 /**
  * MongoDB helpers class.
@@ -102,9 +107,9 @@ export class Mongol {
     collection: Collection<TSchema>,
     hook: DatabaseHook
   ): Collection<TSchema> {
-    for (const fn of Object.values(CrudOperation)) {
-      const originalFn = collection[fn].bind(collection)
-      collection[fn] = this.withDatabaseHook(originalFn, hook, fn) as any
+    for (const op of Object.values(CrudOperation)) {
+      const originalFn = collection[op].bind(collection)
+      collection[op] = this.withDatabaseHook(originalFn, hook, op) as any
     }
     return collection
   }
@@ -123,10 +128,18 @@ export class Mongol {
     operation: CrudOperation
   ): Function {
     return async (...args): Promise<any> => {
-      let newArgs: void | any[]
+      let newArgs = args
       try {
-        if (hook.before)
-          newArgs = await hook.before({ operation, event: 'before' }, ...args)
+        if (hook.before) {
+          const parsedArgs = parsedCrudOperationArgs(operation, args)
+          const result = await hook.before(
+            { operation, event: 'before', arguments: parsedArgs },
+            args
+          )
+          if (isParsedCrudOperationArgs(result))
+            newArgs = unparseCrudOperationArgs(operation, result)
+          else if (result) newArgs = result
+        }
       } catch (err) {
         if (hook.error) await hook.error({ operation, event: 'before' }, err)
         throw err
@@ -134,8 +147,7 @@ export class Mongol {
 
       let result
       try {
-        args = newArgs ? newArgs : args
-        result = await fn(...args)
+        result = await fn(...newArgs)
       } catch (err) {
         if (hook.error) await hook.error({ operation, event: 'during' }, err)
         throw err

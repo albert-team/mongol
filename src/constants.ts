@@ -10,6 +10,8 @@ export const OMITTED_JSON_SCHEMA_KEYWORDS = [
   'id'
 ]
 
+export const INSERT_OPERATIONS = [CrudOperation.InsertMany, CrudOperation.InsertOne]
+
 export const UPDATE_OPERATIONS = [
   CrudOperation.FindOneAndUpdate,
   CrudOperation.UpdateMany,
@@ -19,4 +21,10 @@ export const UPDATE_OPERATIONS = [
 export const REPLACE_OPERATIONS = [
   CrudOperation.FindOneAndReplace,
   CrudOperation.ReplaceOne
+]
+
+export const DELETE_OPERATIONS = [
+  CrudOperation.DeleteMany,
+  CrudOperation.DeleteOne,
+  CrudOperation.FindOneAndDelete
 ]
