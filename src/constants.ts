@@ -12,8 +12,8 @@ export const OMITTED_JSON_SCHEMA_KEYWORDS = [
 
 export const UPDATE_OPERATIONS = [
   CrudOperation.FindOneAndUpdate,
-  CrudOperation.UpdateOne,
-  CrudOperation.UpdateMany
+  CrudOperation.UpdateMany,
+  CrudOperation.UpdateOne
 ]
 
 export const REPLACE_OPERATIONS = [

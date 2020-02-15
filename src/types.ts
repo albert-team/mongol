@@ -28,35 +28,60 @@ export enum CrudOperation {
 /** Database hook event. */
 type DatabaseHookEvent = 'before' | 'during' | 'after'
 
+/** Parsed CRUD operation arguments. */
+interface ParsedCrudOperationArgs {
+  /** In delete, replace, update operations. */
+  query?: object
+  /** In insert, replace operations. */
+  documents?: object[]
+  /** In update operations. */
+  update?: object
+  /** In bulkwrite operation. */
+  subOperations?: object[]
+  /** In all operations. */
+  options?: object
+}
+
 /** Database hook context. */
 export interface DatabaseHookContext {
   operation: CrudOperation
   event: DatabaseHookEvent
 }
 
+/** Database hook context for "before" handler. */
+export interface DatabaseHookBeforeContext extends DatabaseHookContext {
+  arguments: ParsedCrudOperationArgs
+}
+
 /** Database hook "before" handler. */
-type DatabaseBeforeHookHandler = <TArray extends any[]>(
-  context: DatabaseHookContext,
+type DatabaseHookBeforeHandler = <TArray extends any[]>(
+  context: DatabaseHookBeforeContext,
   ...args: TArray
-) => void | TArray | Promise<void> | Promise<TArray>
+) =>
+  | void
+  | TArray
+  | ParsedCrudOperationArgs
+  | Promise<void>
+  | Promise<TArray>
+  | Promise<ParsedCrudOperationArgs>
 
 /** Database hook "after" handler. */
-type DatabaseAfterHookHandler = (
+type DatabaseHookAfterHandler = (
   context: DatabaseHookContext,
   result
 ) => void | Promise<void>
 
 /** Database hook "error" handler. */
-type DatabaseErrorHookHandler = (
+type DatabaseHookErrorHandler = (
   context: DatabaseHookContext,
   error: Error
 ) => void | Promise<void>
 
 /** Database hook. */
 export interface DatabaseHook {
-  before?: DatabaseBeforeHookHandler
-  after?: DatabaseAfterHookHandler
-  error?: DatabaseErrorHookHandler
+  before?: DatabaseHookBeforeHandler
+  after?: DatabaseHookAfterHandler
+  error?: DatabaseHookErrorHandler
 }
 
 /**
