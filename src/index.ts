@@ -129,7 +129,7 @@ export class Mongol {
     operation: CrudOperation
   ): Function {
     return async (...args): Promise<any> => {
-      let newArgs = args
+      let newArgs: any[]
       try {
         if (hook.before) {
           const parsedArgs = parsedCrudOperationArgs(operation, args)
@@ -137,9 +137,10 @@ export class Mongol {
             { operation, event: 'before', arguments: parsedArgs },
             args
           )
-          if (isParsedCrudOperationArgs(result))
+          if (!result) newArgs = args
+          else if (isParsedCrudOperationArgs(result))
             newArgs = unparseCrudOperationArgs(operation, result)
-          else if (result) newArgs = result
+          else newArgs = result
         }
       } catch (err) {
         if (hook.error) await hook.error({ operation, event: 'before' }, err)

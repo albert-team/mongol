@@ -62,8 +62,14 @@ export const unparseCrudOperationArgs = (
 }
 
 export const isParsedCrudOperationArgs = (
-  test: void | any[] | ParsedCrudOperationArgs
+  test: any[] | ParsedCrudOperationArgs
 ): test is ParsedCrudOperationArgs => {
-  if (!test) return false
-  return (test as ParsedCrudOperationArgs).query !== undefined
+  const propNames = new Set(Object.keys(test))
+  return (
+    propNames.has('query') &&
+    propNames.has('documents') &&
+    propNames.has('update') &&
+    propNames.has('subOperations') &&
+    propNames.has('options')
+  )
 }
