@@ -2,12 +2,13 @@
 [![](https://img.shields.io/npm/v/@albert-team/mongol.svg?style=flat-square)](https://www.npmjs.com/package/@albert-team/mongol)
 [![](https://img.shields.io/travis/com/albert-team/mongol.svg?style=flat-square)](https://travis-ci.com/albert-team/mongol)
 
-# mongol
+# Mongol
 
-Minimalistic MongoDB helpers for Node.js
+Minimalistic MongoDB helper for Node.js.
 
 ## FEATURES
 
+- Auto-connect support
 - Enhanced JSON Schema draft-4 support
 - Database hook/trigger support
 - Useful builtin hooks
@@ -21,19 +22,21 @@ Minimalistic MongoDB helpers for Node.js
 
 ### Instructions
 
-- With yarn
+With yarn
 
 ```bash
 $ yarn add @albert-team/mongol
 ```
 
-- With npm
+With npm
 
 ```bash
 $ npm i @albert-team/mongol
 ```
 
 ## USAGE
+
+### Auto-connect support
 
 ### Enhanced JSON Schema draft-4 support
 

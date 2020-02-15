@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v0.5.0
+
+### FEATURES
+
+- Rename `autoTimestamp()` to `createTimestampHook()`. From now on, all builtin hook factories will have `create*Hook()` format.
+
+### PATCHES
+
+- Fix a typo in `/src/utils.ts`
+
 ## v0.4.0
 
 ### FEATURES
@@ -13,7 +23,7 @@
 
 ### FEATURES
 
-- No need to run `Mongol.connect()` separately by using `Mongol.promisifiedDatabase`
+- Auto-connect with `Mongol.promisifiedDatabase`
 - Add support for database hook/trigger
 - Reorganize project
 
