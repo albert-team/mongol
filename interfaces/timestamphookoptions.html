@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AutoTimestampOptions | @albert-team/mongol</title>
+	<title>TimestampHookOptions | @albert-team/mongol</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="autotimestampoptions.html">AutoTimestampOptions</a>
+					<a href="timestamphookoptions.html">TimestampHookOptions</a>
 				</li>
 			</ul>
-			<h1>Interface AutoTimestampOptions</h1>
+			<h1>Interface TimestampHookOptions</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Options for <a href="../globals.html#autotimestamp">autoTimestamp</a> hook.</p>
+						<p>Timestamp hook options.</p>
 					</div>
 				</div>
 			</section>
@@ -75,7 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AutoTimestampOptions</span>
+						<span class="target">TimestampHookOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -86,7 +86,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="autotimestampoptions.html#namingconventions" class="tsd-kind-icon">naming<wbr>Conventions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="timestamphookoptions.html#namingconventions" class="tsd-kind-icon">naming<wbr>Conventions</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,7 +100,7 @@
 					<div class="tsd-signature tsd-kind-icon">naming<wbr>Conventions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><a href="../enums/namingconvention.html" class="tsd-signature-type">NamingConvention</a><span class="tsd-signature-symbol">, </span><a href="../enums/namingconvention.html" class="tsd-signature-type">NamingConvention</a><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/d76a3ed/src/types.ts#L104">src/types.ts:104</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/32db8df/src/types.ts#L104">src/types.ts:104</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,18 +133,6 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/mongol.html" class="tsd-kind-icon">Mongol</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="autotimestampoptions.html" class="tsd-kind-icon">Auto<wbr>Timestamp<wbr>Options</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="autotimestampoptions.html#namingconventions" class="tsd-kind-icon">naming<wbr>Conventions</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="databasehook.html" class="tsd-kind-icon">Database<wbr>Hook</a>
 					</li>
@@ -160,6 +148,18 @@
 					<li class=" tsd-kind-interface">
 						<a href="schemaoptions.html" class="tsd-kind-icon">Schema<wbr>Options</a>
 					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="timestamphookoptions.html" class="tsd-kind-icon">Timestamp<wbr>Hook<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="timestamphookoptions.html#namingconventions" class="tsd-kind-icon">naming<wbr>Conventions</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#databasehookafterhandler" class="tsd-kind-icon">Database<wbr>Hook<wbr>After<wbr>Handler</a>
 					</li>
@@ -187,14 +187,17 @@
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#update_operations" class="tsd-kind-icon">UPDATE_<wbr>OPERATIONS</a>
 					</li>
-					<li class=" tsd-kind-function">
+					<li class=" tsd-kind-variable">
 						<a href="../globals.html#autotimestamp" class="tsd-kind-icon">auto<wbr>Timestamp</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#createtimestamphook" class="tsd-kind-icon">create<wbr>Timestamp<wbr>Hook</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#isparsedcrudoperationargs" class="tsd-kind-icon">is<wbr>Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../globals.html#parsedcrudoperationargs" class="tsd-kind-icon">parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
+						<a href="../globals.html#parsecrudoperationargs" class="tsd-kind-icon">parse<wbr>Crud<wbr>Operation<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#removeproperties" class="tsd-kind-icon">remove<wbr>Properties</a>
