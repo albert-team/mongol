@@ -5,16 +5,14 @@ export enum NamingConvention {
   SnakeCase = 'snakecase'
 }
 
-/** CRUD operations supported by MongoDB [[Collection]].
+/** CRUD operations supported by MongoDB driver. If you need a more generic but shorter set, see [[CrudOp]].
  *
- * Mongol does not support all operations, especially deprecated ones.
+ * Mongol does not try to support all operations, especially deprecated ones.
  */
 export enum CrudOperation {
   BulkWrite = 'bulkWrite',
   DeleteMany = 'deleteMany',
   DeleteOne = 'deleteOne',
-  // Find = 'find', // cannot support now
-  // FindOne = 'findOne', // do not want to support now
   FindOneAndDelete = 'findOneAndDelete',
   FindOneAndReplace = 'findOneAndReplace',
   FindOneAndUpdate = 'findOneAndUpdate',
@@ -23,6 +21,15 @@ export enum CrudOperation {
   ReplaceOne = 'replaceOne',
   UpdateMany = 'updateMany',
   UpdateOne = 'updateOne'
+}
+
+/** CRUD operations, but shorter than [[CrudOperation]]. */
+export enum CrudOp {
+  BulkWrite = 'bulkWrite',
+  Delete = 'delete',
+  Insert = 'insert',
+  Replace = 'replace',
+  Update = 'update'
 }
 
 /** Database hook event. */
@@ -45,6 +52,7 @@ export interface ParsedCrudOperationArgs {
 /** Database hook context. */
 export interface DatabaseHookContext {
   operation: CrudOperation
+  op: CrudOp
   event: DatabaseHookEvent
 }
 
@@ -54,33 +62,30 @@ export interface DatabaseHookBeforeContext extends DatabaseHookContext {
 }
 
 /** Database hook "before" handler. */
-type DatabaseHookBeforeHandler = <TArray extends any[]>(
-  context: DatabaseHookBeforeContext,
-  args: TArray
-) =>
-  | void
-  | TArray
-  | ParsedCrudOperationArgs
-  | Promise<void>
-  | Promise<TArray>
-  | Promise<ParsedCrudOperationArgs>
+export interface DatabaseHookBeforeHandler<TArray extends any[]> {
+  (context: DatabaseHookBeforeContext, args: TArray):
+    | void
+    | TArray
+    | ParsedCrudOperationArgs
+    | Promise<void>
+    | Promise<TArray>
+    | Promise<ParsedCrudOperationArgs>
+}
 
 /** Database hook "after" handler. */
-type DatabaseHookAfterHandler = (
-  context: DatabaseHookContext,
-  result
-) => void | Promise<void>
+export interface DatabaseHookAfterHandler<T> {
+  (context: DatabaseHookContext, result: T): void | Promise<void>
+}
 
 /** Database hook "error" handler. */
-type DatabaseHookErrorHandler = (
-  context: DatabaseHookContext,
-  error: Error
-) => void | Promise<void>
+export interface DatabaseHookErrorHandler {
+  (context: DatabaseHookContext, error: Error): void | Promise<void>
+}
 
 /** Database hook. */
-export interface DatabaseHook {
-  before?: DatabaseHookBeforeHandler
-  after?: DatabaseHookAfterHandler
+export interface DatabaseHook<TArray extends any[], T> {
+  before?: DatabaseHookBeforeHandler<TArray>
+  after?: DatabaseHookAfterHandler<T>
   error?: DatabaseHookErrorHandler
 }
 

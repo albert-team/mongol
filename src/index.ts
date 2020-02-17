@@ -1,8 +1,9 @@
 import { Collection, Db, MongoClient } from 'mongodb'
 import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
 import { DbNotFoundError } from './errors'
-import { CrudOperation, DatabaseHook, SchemaOptions } from './types'
+import { CrudOp, CrudOperation, DatabaseHook, SchemaOptions } from './types'
 import {
+  getCrudOp,
   isParsedCrudOperationArgs,
   parseCrudOperationArgs,
   removeProperties,
@@ -104,9 +105,9 @@ export class Mongol {
    * @param hook Database hook/trigger.
    * @returns Collection with the hook attached.
    */
-  public attachDatabaseHook<TSchema>(
+  public attachDatabaseHook<TSchema, TArray extends any[], T>(
     collection: Collection<TSchema>,
-    hook: DatabaseHook
+    hook: DatabaseHook<TArray, T>
   ): Collection<TSchema> {
     for (const op of Object.values(CrudOperation)) {
       const originalFn = collection[op].bind(collection)
@@ -123,18 +124,20 @@ export class Mongol {
    * @param hook Database hook/trigger.
    * @param operation CRUD operation respective to the method.
    */
-  private withDatabaseHook(
+  private withDatabaseHook<TArray extends any[], T>(
     fn: Function,
-    hook: DatabaseHook,
+    hook: DatabaseHook<TArray, T>,
     operation: CrudOperation
   ): Function {
-    return async (...args): Promise<any> => {
-      let newArgs: any[]
+    const op: CrudOp = getCrudOp(operation)
+
+    return async (...args: TArray): Promise<any> => {
+      let newArgs: TArray
       try {
         if (hook.before) {
           const parsedArgs = parseCrudOperationArgs(operation, args)
           const result = await hook.before(
-            { operation, event: 'before', arguments: parsedArgs },
+            { operation, op, event: 'before', arguments: parsedArgs },
             args
           )
           if (!result) newArgs = args
@@ -143,7 +146,7 @@ export class Mongol {
           else newArgs = result
         }
       } catch (err) {
-        if (hook.error) await hook.error({ operation, event: 'before' }, err)
+        if (hook.error) await hook.error({ operation, op, event: 'before' }, err)
         throw err
       }
 
@@ -151,14 +154,14 @@ export class Mongol {
       try {
         result = await fn(...newArgs)
       } catch (err) {
-        if (hook.error) await hook.error({ operation, event: 'during' }, err)
+        if (hook.error) await hook.error({ operation, op, event: 'during' }, err)
         throw err
       }
 
       try {
-        if (hook.after) await hook.after({ operation, event: 'after' }, result)
+        if (hook.after) await hook.after({ operation, op, event: 'after' }, result)
       } catch (err) {
-        if (hook.error) await hook.error({ operation, event: 'after' }, err)
+        if (hook.error) await hook.error({ operation, op, event: 'after' }, err)
         throw err
       }
 

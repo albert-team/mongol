@@ -1,5 +1,10 @@
-import { DELETE_OPERATIONS, REPLACE_OPERATIONS, UPDATE_OPERATIONS } from './constants'
-import { CrudOperation, ParsedCrudOperationArgs } from './types'
+import {
+  DELETE_OPERATIONS,
+  INSERT_OPERATIONS,
+  REPLACE_OPERATIONS,
+  UPDATE_OPERATIONS
+} from './constants'
+import { CrudOp, CrudOperation, ParsedCrudOperationArgs } from './types'
 
 export const removeProperties = (schema: object, propNames: Set<string>): object => {
   const result = {}
@@ -24,6 +29,14 @@ export const withTimestamp = <T>(doc: T, propName: string): T => {
   return doc
 }
 
+export const getCrudOp = (operation: CrudOperation): CrudOp => {
+  if (INSERT_OPERATIONS.has(operation)) return CrudOp.Insert
+  else if (UPDATE_OPERATIONS.has(operation)) return CrudOp.Update
+  else if (REPLACE_OPERATIONS.has(operation)) return CrudOp.Replace
+  else if (DELETE_OPERATIONS.has(operation)) return CrudOp.Delete
+  else return CrudOp.BulkWrite // operation === CrudOperation.BulkWrite
+}
+
 export const parseCrudOperationArgs = <TArray extends any[]>(
   op: CrudOperation,
   args: TArray
@@ -44,19 +57,19 @@ export const parseCrudOperationArgs = <TArray extends any[]>(
   return { query, documents, update, subOperations, options }
 }
 
-export const unparseCrudOperationArgs = (
+export const unparseCrudOperationArgs = <TArray extends any[]>(
   op: CrudOperation,
   parsedArgs: ParsedCrudOperationArgs
-): any[] => {
+): TArray => {
   const { query, documents, update, subOperations, options } = parsedArgs
-  let args: any[]
+  let args: TArray
 
-  if (op === CrudOperation.InsertOne) args = [documents[0], options]
-  else if (op === CrudOperation.InsertMany) args = [documents, options]
-  else if (UPDATE_OPERATIONS.has(op)) args = [query, update, options]
-  else if (REPLACE_OPERATIONS.has(op)) args = [query, documents[0], options]
-  else if (DELETE_OPERATIONS.has(op)) args = [query, options]
-  else if (op === CrudOperation.BulkWrite) args = [subOperations, options]
+  if (op === CrudOperation.InsertOne) args = [documents[0], options] as TArray
+  else if (op === CrudOperation.InsertMany) args = [documents, options] as TArray
+  else if (UPDATE_OPERATIONS.has(op)) args = [query, update, options] as TArray
+  else if (REPLACE_OPERATIONS.has(op)) args = [query, documents[0], options] as TArray
+  else if (DELETE_OPERATIONS.has(op)) args = [query, options] as TArray
+  else if (op === CrudOperation.BulkWrite) args = [subOperations, options] as TArray
 
   return args
 }
