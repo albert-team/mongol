@@ -1,14 +1,10 @@
-import { INSERT_OPERATIONS, REPLACE_OPERATIONS, UPDATE_OPERATIONS } from '../constants'
-import {
-  CrudOperation,
-  DatabaseHook,
-  NamingConvention,
-  TimestampHookOptions
-} from '../types'
+import { CrudOp, DatabaseHook, NamingConvention, TimestampHookOptions } from '../types'
 import { withTimestamp } from '../utils'
 
 /** Timestamp hook factory function. */
-export const createTimestampHook = (options: TimestampHookOptions = {}): DatabaseHook => {
+export const createTimestampHook = <TArray extends any[], T>(
+  options: TimestampHookOptions = {}
+): DatabaseHook<TArray, T> => {
   const {
     namingConventions = [NamingConvention.Unchanged, NamingConvention.CamelCase]
   } = options
@@ -18,17 +14,17 @@ export const createTimestampHook = (options: TimestampHookOptions = {}): Databas
 
   return {
     before: (context) => {
-      const { operation: op, arguments: args } = context
+      const { op, arguments: args } = context
       const { query, options } = args
       let { documents, update, subOperations } = args
 
-      if (INSERT_OPERATIONS.has(op))
+      if (op === CrudOp.Insert)
         documents = documents.map((doc) => withTimestamp(doc, caPropName))
-      else if (UPDATE_OPERATIONS.has(op))
+      else if (op === CrudOp.Update)
         update = { ...update, $currentDate: { [uaPropName]: true } }
-      else if (REPLACE_OPERATIONS.has(op))
+      else if (op === CrudOp.Replace)
         documents = documents.map((doc) => withTimestamp(doc, uaPropName))
-      else if (op === CrudOperation.BulkWrite)
+      else if (op === CrudOp.BulkWrite)
         subOperations = subOperations.map((subOp) => {
           if (subOp.insertOne)
             subOp.insertOne.document = withTimestamp(subOp.insertOne.document, caPropName)
@@ -51,7 +47,7 @@ export const createTimestampHook = (options: TimestampHookOptions = {}): Databas
         })
       return { query, documents, update, subOperations, options }
     }
-  } as DatabaseHook
+  } as DatabaseHook<TArray, T>
 }
 
 /**
