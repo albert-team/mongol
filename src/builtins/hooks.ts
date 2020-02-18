@@ -18,16 +18,19 @@ export const createTimestampHook = <TArray extends any[], T>(
       const { query, options } = args
       let { documents, update, subOperations } = args
 
-      if (op === CrudOp.Insert)
+      if (op === CrudOp.Insert || op === CrudOp.Replace)
         documents = documents.map((doc) => withTimestamp(doc, caPropName))
       else if (op === CrudOp.Update)
         update = { ...update, $currentDate: { [uaPropName]: true } }
-      else if (op === CrudOp.Replace)
-        documents = documents.map((doc) => withTimestamp(doc, uaPropName))
       else if (op === CrudOp.BulkWrite)
         subOperations = subOperations.map((subOp) => {
           if (subOp.insertOne)
             subOp.insertOne.document = withTimestamp(subOp.insertOne.document, caPropName)
+          else if (subOp.replaceOne)
+            subOp.replaceOne.replacement = withTimestamp(
+              subOp.replaceOne.replacement,
+              caPropName
+            )
           else if (subOp.updateOne)
             subOp.updateOne.update = {
               ...subOp.updateOne.update,
@@ -38,13 +41,10 @@ export const createTimestampHook = <TArray extends any[], T>(
               ...subOp.updateMany.update,
               $currentDate: { [uaPropName]: true }
             }
-          else if (subOp.replaceOne)
-            subOp.replaceOne.replacement = withTimestamp(
-              subOp.replaceOne.replacement,
-              uaPropName
-            )
+
           return subOp
         })
+
       return { query, documents, update, subOperations, options }
     }
   } as DatabaseHook<TArray, T>

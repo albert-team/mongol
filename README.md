@@ -10,7 +10,7 @@ Minimalistic MongoDB helper for Node.js.
 
 - Auto-connect support
 - Enhanced JSON Schema draft-4 support
-- Database hook/trigger support
+- Database hook/trigger support _(This feature is still in its early stage of development. Please use it with caution!)_
 - Useful builtin hooks
 
 ## INSTALLATION
