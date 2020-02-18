@@ -5,7 +5,7 @@ export enum NamingConvention {
   SnakeCase = 'snakecase'
 }
 
-/** CRUD operations supported by MongoDB driver. If you need a more generic but shorter set, see [[CrudOp]].
+/** CRUD operations supported by MongoDB driver, but more specific than [[CrudOp]].
  *
  * Mongol does not try to support all operations, especially deprecated ones.
  */
@@ -23,7 +23,7 @@ export enum CrudOperation {
   UpdateOne = 'updateOne'
 }
 
-/** CRUD operations, but shorter than [[CrudOperation]]. */
+/** CRUD operations supported by MongoDB driver, but more generic than [[CrudOperation]]. */
 export enum CrudOp {
   BulkWrite = 'bulkWrite',
   Delete = 'delete',
