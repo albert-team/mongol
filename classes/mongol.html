@@ -114,13 +114,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Mongol<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dbName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="mongol.html" class="tsd-signature-type">Mongol</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Mongol<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dbName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/mongoloptions.html" class="tsd-signature-type">MongolOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="mongol.html" class="tsd-signature-type">Mongol</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L19">src/mongol.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L28">src/mongol.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -130,6 +130,9 @@
 								</li>
 								<li>
 									<h5>dbName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="../interfaces/mongoloptions.html" class="tsd-signature-type">MongolOptions</a><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="mongol.html" class="tsd-signature-type">Mongol</a></h4>
@@ -149,7 +152,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L33">src/mongol.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L42">src/mongol.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -172,7 +175,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L39">src/mongol.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L48">src/mongol.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,13 +194,13 @@
 					<a name="attachdatabasehook" class="tsd-anchor"></a>
 					<h3>attach<wbr>Database<wbr>Hook</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">attach<wbr>Database<wbr>Hook&lt;TSchema, TArray, T&gt;<span class="tsd-signature-symbol">(</span>collection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSchema</span><span class="tsd-signature-symbol">&gt;</span>, hook<span class="tsd-signature-symbol">: </span><a href="../interfaces/databasehook.html" class="tsd-signature-type">DatabaseHook</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSchema</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">attach<wbr>Database<wbr>Hook&lt;TSchema, TArgs, TResult&gt;<span class="tsd-signature-symbol">(</span>collection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSchema</span><span class="tsd-signature-symbol">&gt;</span>, hook<span class="tsd-signature-symbol">: </span><a href="../interfaces/databasehook.html" class="tsd-signature-type">DatabaseHook</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSchema</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L108">src/mongol.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L120">src/mongol.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -211,10 +214,10 @@
 									<h4>TSchema</h4>
 								</li>
 								<li>
-									<h4>TArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+									<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 								</li>
 								<li>
-									<h4>T</h4>
+									<h4>TResult</h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -226,7 +229,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>hook: <a href="../interfaces/databasehook.html" class="tsd-signature-type">DatabaseHook</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>hook: <a href="../interfaces/databasehook.html" class="tsd-signature-type">DatabaseHook</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Database hook/trigger.</p>
 									</div>
@@ -247,7 +250,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L55">src/mongol.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L64">src/mongol.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -270,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L64">src/mongol.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L73">src/mongol.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,13 +290,13 @@
 					<a name="setschema" class="tsd-anchor"></a>
 					<h3>set<wbr>Schema</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Schema<span class="tsd-signature-symbol">(</span>collectionName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/schemaoptions.html" class="tsd-signature-type">SchemaOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Schema<span class="tsd-signature-symbol">(</span>collectionName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/schemaoptions.html" class="tsd-signature-type">SchemaOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/mongol.ts#L75">src/mongol.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/mongol.ts#L85">src/mongol.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +325,8 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Actually used JSON schema.</p>
 						</li>
 					</ul>
 				</section>
@@ -346,6 +350,9 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="databasehookerror.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
@@ -397,6 +404,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/databasehookerrorhandler.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/mongoloptions.html" class="tsd-kind-icon">Mongol<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>

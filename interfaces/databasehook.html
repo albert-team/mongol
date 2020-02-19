@@ -57,7 +57,7 @@
 					<a href="databasehook.html">DatabaseHook</a>
 				</li>
 			</ul>
-			<h1>Interface DatabaseHook&lt;TArray, T&gt;</h1>
+			<h1>Interface DatabaseHook&lt;TArgs, TResult&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -75,10 +75,10 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>TArray<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 					</li>
 					<li>
-						<h4>T</h4>
+						<h4>TResult</h4>
 					</li>
 				</ul>
 			</section>
@@ -110,20 +110,20 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="after" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> after</h3>
-					<div class="tsd-signature tsd-kind-icon">after<span class="tsd-signature-symbol">:</span> <a href="databasehookafterhandler.html" class="tsd-signature-type">DatabaseHookAfterHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">after<span class="tsd-signature-symbol">:</span> <a href="databasehookafterhandler.html" class="tsd-signature-type">DatabaseHookAfterHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/types.ts#L88">src/types.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/types.ts#L92">src/types.ts:92</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="before" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> before</h3>
-					<div class="tsd-signature tsd-kind-icon">before<span class="tsd-signature-symbol">:</span> <a href="databasehookbeforehandler.html" class="tsd-signature-type">DatabaseHookBeforeHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArray</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">before<span class="tsd-signature-symbol">:</span> <a href="databasehookbeforehandler.html" class="tsd-signature-type">DatabaseHookBeforeHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/types.ts#L87">src/types.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/types.ts#L91">src/types.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -133,9 +133,16 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <a href="databasehookerrorhandler.html" class="tsd-signature-type">DatabaseHookErrorHandler</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/types.ts#L89">src/types.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/types.ts#L94">src/types.ts:94</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Since v0.7.0. Use normal try-catch blocks instead.</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -157,6 +164,9 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/databasehookerror.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
@@ -196,6 +206,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="databasehookerrorhandler.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="mongoloptions.html" class="tsd-kind-icon">Mongol<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>

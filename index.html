@@ -73,10 +73,10 @@
 					<h2>FEATURES</h2>
 				</a>
 				<ul>
-					<li>Auto-connect support</li>
-					<li>Enhanced JSON Schema draft-4 support</li>
-					<li>Database hook/trigger support <em>(This feature is still in its early stage of development. Please use it with caution!)</em></li>
-					<li>Useful builtin hooks</li>
+					<li><a href="#auto-connect-support">Auto-connect support</a></li>
+					<li><a href="#enhanced-json-schema-draft-4-support">Enhanced JSON Schema draft-4 support</a></li>
+					<li><a href="#database-hooktrigger-support">Database hook/trigger support</a> <em>(This feature is still in its early stage of development. Please use it with caution!)</em></li>
+					<li><a href="#useful-builtin-hooks">Useful builtin hooks</a></li>
 				</ul>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>INSTALLATION</h2>
@@ -95,21 +95,95 @@
 				<pre><code class="language-bash">$ yarn add @albert-team/mongol</code></pre>
 				<p>With npm</p>
 				<pre><code class="language-bash">$ npm i @albert-team/mongol</code></pre>
+				<a href="#get-started" id="get-started" style="color: inherit; text-decoration: none;">
+					<h2>GET STARTED</h2>
+				</a>
+				<p>The easy way:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { Mongol } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@albert-team/mongol'</span>)
+
+<span class="hljs-keyword">const</span> main = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> mongol = <span class="hljs-keyword">new</span> Mongol(<span class="hljs-string">'mongodb://localhost:27017/myproject'</span>, <span class="hljs-string">'myproject'</span>)
+  <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> mongol.promisifiedDatabase
+  <span class="hljs-comment">// now you can use db variable as a normal mongodb.Db object</span>
+}
+main()</code></pre>
+				<p>The hard way:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { Mongol } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@albert-team/mongol'</span>)
+
+<span class="hljs-keyword">const</span> main = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> mongol = <span class="hljs-keyword">new</span> Mongol(<span class="hljs-string">'mongodb://localhost:27017/myproject'</span>, <span class="hljs-string">'myproject'</span>, {
+    <span class="hljs-comment">// you can pass any valid MongoClient options here</span>
+    <span class="hljs-attr">client</span>: { <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">useUnifiedTopology</span>: <span class="hljs-literal">true</span> }
+  })
+  <span class="hljs-keyword">await</span> mongol.connect()
+  <span class="hljs-keyword">const</span> db = mongol.database
+  <span class="hljs-comment">// now you can use db variable as a normal mongodb.Db object</span>
+  <span class="hljs-keyword">await</span> mongol.disconnect()
+}
+main()</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>USAGE</h2>
 				</a>
 				<a href="#auto-connect-support" id="auto-connect-support" style="color: inherit; text-decoration: none;">
 					<h3>Auto-connect support</h3>
 				</a>
+				<p>Instead of manually calling <code>Mongol.connect()</code>:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">await</span> mongol.connect()
+<span class="hljs-keyword">const</span> db = mongol.database
+<span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)</code></pre>
+				<p>Just use <code>Mongol.promisifiedDatabase</code> and you are good to go:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> mongol.promisifiedDatabase
+<span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)</code></pre>
 				<a href="#enhanced-json-schema-draft-4-support" id="enhanced-json-schema-draft-4-support" style="color: inherit; text-decoration: none;">
 					<h3>Enhanced JSON Schema draft-4 support</h3>
 				</a>
+				<p>Instead of throwing errors on schemas with <a href="https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/#json-schema-omission">omitted keywords</a> ($ref, $schema, default, definitions, format, id), Mongol may help you ignore them quietly:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> usedSchema = <span class="hljs-keyword">await</span> mongol.setSchema(<span class="hljs-string">'mycollection'</span>, originalSchema, {
+  <span class="hljs-attr">ignoreType</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">ignoreUnsupportedKeywords</span>: <span class="hljs-literal">true</span>
+})</code></pre>
 				<a href="#database-hooktrigger-support" id="database-hooktrigger-support" style="color: inherit; text-decoration: none;">
 					<h3>Database hook/trigger support</h3>
 				</a>
+				<p>Basic hook:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)
+mongol.attachDatabaseHook(coll, {
+  <span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">context</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Before <span class="hljs-subst">${context.operation}</span>`</span>),
+  <span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">context</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`After <span class="hljs-subst">${context.operation}</span>`</span>)
+})
+<span class="hljs-keyword">await</span> coll.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })
+<span class="hljs-comment">// Before insertOne</span>
+<span class="hljs-comment">// After insertOne</span></code></pre>
+				<p>Nested hook:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)
+mongol.attachDatabaseHook(coll, {
+  <span class="hljs-attr">before</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Inner before'</span>),
+  <span class="hljs-attr">after</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Inner after'</span>)
+})
+mongol.attachDatabaseHook(coll, {
+  <span class="hljs-attr">before</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Outer before'</span>),
+  <span class="hljs-attr">after</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Outer after'</span>)
+})
+<span class="hljs-keyword">await</span> coll.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })
+<span class="hljs-comment">// Outer before</span>
+<span class="hljs-comment">// Inner before</span>
+<span class="hljs-comment">// Inner after</span>
+<span class="hljs-comment">// Outer after</span></code></pre>
+				<p>Want &quot;unhooked&quot; version? Just create another collection object:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> another = db.collection(<span class="hljs-string">'mycollection'</span>) <span class="hljs-comment">// this has nothing to do with coll variable above</span>
+<span class="hljs-keyword">await</span> another.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })</code></pre>
 				<a href="#useful-builtin-hooks" id="useful-builtin-hooks" style="color: inherit; text-decoration: none;">
 					<h3>Useful builtin hooks</h3>
 				</a>
+				<p>Timestamp hook:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { createTimestampHook } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@albert-team/mongol/builtins/hooks'</span>)
+
+<span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)
+mongol.attachDatabaseHook(
+  coll,
+  createTimestampHook({ <span class="hljs-attr">namingConventions</span>: [<span class="hljs-string">'unchanged'</span>, <span class="hljs-string">'snakecase'</span>] })
+)</code></pre>
+				<p><strong>Notice:</strong> Replacement document in replace operations (findOneAndReplace, replaceOne) is considered a new one, hence uses createdAt/created_at.</p>
 				<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
 					<h2>API Documentation</h2>
 				</a>
@@ -140,6 +214,9 @@
 						<a href="enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/databasehookerror.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -162,6 +239,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/databasehookerrorhandler.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mongoloptions.html" class="tsd-kind-icon">Mongol<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>

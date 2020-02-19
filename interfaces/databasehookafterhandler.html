@@ -57,7 +57,7 @@
 					<a href="databasehookafterhandler.html">DatabaseHookAfterHandler</a>
 				</li>
 			</ul>
-			<h1>Interface DatabaseHookAfterHandler&lt;T&gt;</h1>
+			<h1>Interface DatabaseHookAfterHandler&lt;TResult&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -75,7 +75,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>T</h4>
+						<h4>TResult</h4>
 					</li>
 				</ul>
 			</section>
@@ -90,13 +90,13 @@
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/albert-team/mongol/blob/601abe7/src/types.ts#L76">src/types.ts:76</a></li>
+								<li>Defined in <a href="https://github.com/albert-team/mongol/blob/8f904f7/src/types.ts#L78">src/types.ts:78</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -110,7 +110,7 @@
 								<h5>context: <a href="databasehookcontext.html" class="tsd-signature-type">DatabaseHookContext</a></h5>
 							</li>
 							<li>
-								<h5>result: <span class="tsd-signature-type">T</span></h5>
+								<h5>result: <span class="tsd-signature-type">TResult</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -136,6 +136,9 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/namingconvention.html" class="tsd-kind-icon">Naming<wbr>Convention</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/databasehookerror.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/dbnotfounderror.html" class="tsd-kind-icon">Db<wbr>Not<wbr>Found<wbr>Error</a>
@@ -164,6 +167,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="databasehookerrorhandler.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="mongoloptions.html" class="tsd-kind-icon">Mongol<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="parsedcrudoperationargs.html" class="tsd-kind-icon">Parsed<wbr>Crud<wbr>Operation<wbr>Args</a>
