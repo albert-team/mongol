@@ -31,13 +31,13 @@ export class Mongol {
    * In upcoming minor versions, this will be deprecated. In the next major version, this will be removed.
    */
   get database(): Db {
-    if (!this.db) throw new DbNotFoundError()
+    if (!this.client.isConnected()) throw new DbNotFoundError()
     return this.db
   }
 
   /** Database instance, as a Promise. */
   get promisifiedDatabase(): Promise<Db> {
-    if (!this.db) {
+    if (!this.client.isConnected()) {
       return this.client
         .connect()
         .then((client) => client.db(this.dbName))
