@@ -77,7 +77,9 @@ export interface DatabaseHookAfterHandler<TResult> {
   (context: DatabaseHookContext, result: TResult): void | Promise<void>
 }
 
-/** Database hook "error" handler. */
+/** Database hook "error" handler.
+ * @deprecated Since v0.7.0. Use normal try-catch blocks instead.
+ */
 export interface DatabaseHookErrorHandler {
   (context: DatabaseHookContext, error: Error): void | Promise<void>
 }
@@ -86,6 +88,7 @@ export interface DatabaseHookErrorHandler {
 export interface DatabaseHook<TArgs extends any[], TResult> {
   before?: DatabaseHookBeforeHandler<TArgs>
   after?: DatabaseHookAfterHandler<TResult>
+  /** @deprecated Since v0.7.0. Use normal try-catch blocks instead. */
   error?: DatabaseHookErrorHandler
 }
 

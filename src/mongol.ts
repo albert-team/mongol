@@ -1,7 +1,14 @@
 import { Collection, Db, MongoClient } from 'mongodb'
 import { OMITTED_JSON_SCHEMA_KEYWORDS } from './constants'
-import { DbNotFoundError } from './errors'
-import { CrudOp, CrudOperation, DatabaseHook, SchemaOptions } from './types'
+import { DatabaseHookError, DbNotFoundError } from './errors'
+import {
+  CrudOp,
+  CrudOperation,
+  DatabaseHook,
+  DatabaseHookBeforeContext,
+  DatabaseHookContext,
+  SchemaOptions
+} from './types'
 import {
   getCrudOp,
   isParsedCrudOperationArgs,
@@ -132,40 +139,35 @@ export class Mongol {
     const op: CrudOp = getCrudOp(operation)
 
     return async (...args: TArgs): Promise<any> => {
+      const parsedArgs = parseCrudOperationArgs(operation, args)
+      let context: DatabaseHookContext
       let newArgs: TArgs
+
       try {
+        context = {
+          operation,
+          op,
+          event: 'before',
+          arguments: parsedArgs
+        } as DatabaseHookBeforeContext
         if (hook.before) {
-          const parsedArgs = parseCrudOperationArgs(operation, args)
-          const result = await hook.before(
-            { operation, op, event: 'before', arguments: parsedArgs },
-            args
-          )
+          const result = await hook.before(context as DatabaseHookBeforeContext, args)
           if (!result) newArgs = args
           else if (isParsedCrudOperationArgs(result))
             newArgs = unparseCrudOperationArgs(operation, result)
           else newArgs = result
         }
-      } catch (err) {
-        if (hook.error) await hook.error({ operation, op, event: 'before' }, err)
-        throw err
-      }
 
-      let result
-      try {
-        result = await fn(...newArgs)
-      } catch (err) {
-        if (hook.error) await hook.error({ operation, op, event: 'during' }, err)
-        throw err
-      }
+        context = { operation, op, event: 'during' }
+        const result = await fn(...newArgs)
 
-      try {
-        if (hook.after) await hook.after({ operation, op, event: 'after' }, result)
+        context = { operation, op, event: 'after' }
+        if (hook.after) await hook.after(context, result)
+        return result
       } catch (err) {
-        if (hook.error) await hook.error({ operation, op, event: 'after' }, err)
-        throw err
+        if (hook.error) await hook.error(context, err)
+        throw new DatabaseHookError(err.message, context)
       }
-
-      return result
     }
   }
 }
