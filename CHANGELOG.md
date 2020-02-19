@@ -7,7 +7,7 @@
 - Add `CrudOp` - abbreviation for `CrudOperation`
 - Move `Mongol` to a separate file named `/src/mongol.ts`
 - Export all type definitions together with `Mongol` under `@albert-team/mongol`
-- Use `createdAt/created_at` in replace operations instead
+- Use `createdAt/created_at` in replace operations in builtin timestamp hook
 - Remove meaningless tests
 
 ## v0.5.0
