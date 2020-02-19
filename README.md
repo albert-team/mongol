@@ -22,13 +22,13 @@ Minimalistic MongoDB helper for Node.js.
 
 ### Instructions
 
-With yarn
+With yarn:
 
 ```bash
 $ yarn add @albert-team/mongol
 ```
 
-With npm
+With npm:
 
 ```bash
 $ npm i @albert-team/mongol
@@ -44,7 +44,7 @@ const { Mongol } = require('@albert-team/mongol')
 const main = async () => {
   const mongol = new Mongol('mongodb://localhost:27017/myproject', 'myproject')
   const db = await mongol.promisifiedDatabase
-  // now you can use db variable as a normal mongodb.Db object
+  // now you can use db variable as a normal Db object
 }
 main()
 ```
@@ -61,7 +61,7 @@ const main = async () => {
   })
   await mongol.connect()
   const db = mongol.database
-  // now you can use db variable as a normal mongodb.Db object
+  // now you can use db variable as a normal Db object
   await mongol.disconnect()
 }
 main()
@@ -76,19 +76,17 @@ Instead of manually calling `Mongol.connect()`:
 ```js
 await mongol.connect()
 const db = mongol.database
-const coll = db.collection('mycollection')
 ```
 
 Just use `Mongol.promisifiedDatabase` and you are good to go:
 
 ```js
 const db = await mongol.promisifiedDatabase
-const coll = db.collection('mycollection')
 ```
 
 ### Enhanced JSON Schema draft-4 support
 
-Instead of throwing errors on schemas with [omitted keywords](https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/#json-schema-omission) ($ref, $schema, default, definitions, format, id), Mongol may help you ignore them quietly:
+Instead of throwing errors on schemas with [omitted keywords](https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/#json-schema-omission) ($ref, $schema, default, definitions, format and id), Mongol can help you ignore them quietly:
 
 ```js
 const usedSchema = await mongol.setSchema('mycollection', originalSchema, {
@@ -136,6 +134,7 @@ Want "unhooked" version? Just create another collection object:
 ```js
 const another = db.collection('mycollection') // this has nothing to do with coll variable above
 await another.insertOne({ foo: 'bar' })
+//
 ```
 
 ### Useful builtin hooks
@@ -152,9 +151,9 @@ mongol.attachDatabaseHook(
 )
 ```
 
-**Notice:** Replacement document in replace operations (findOneAndReplace, replaceOne) is considered a new one, hence uses createdAt/created_at.
+**Notice:** Replacement document in replace operations (findOneAndReplace and replaceOne) is considered a new one, hence uses createdAt/created_at.
 
-## API Documentation
+## API DOCUMENTATION
 
 Read more [here](https://albert-team.github.io/mongol).
 

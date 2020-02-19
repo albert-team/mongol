@@ -5,7 +5,7 @@
 ### FEATURES
 
 - `Mongol.setSchema()` returns actually used JSON schema
-- Add Mongol constructor options `MongolOptions`
+- Add Mongol constructor options `MongolOptions`, with custom `MongoClient` options support
 - Deprecate database hook "error" handler and promote `DatabaseHookError`
 - Internally use `Mongol.client.isConnected()` instead of `Mongol.db` to check connection state
 - Improve some generic type names
