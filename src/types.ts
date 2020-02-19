@@ -1,3 +1,5 @@
+import { MongoClientOptions } from 'mongodb'
+
 /** Naming conventions. */
 export enum NamingConvention {
   Unchanged = 'unchanged',
@@ -90,6 +92,11 @@ export interface DatabaseHook<TArgs extends any[], TResult> {
   after?: DatabaseHookAfterHandler<TResult>
   /** @deprecated Since v0.7.0. Use normal try-catch blocks instead. */
   error?: DatabaseHookErrorHandler
+}
+
+/** Mongol constructor options. */
+export interface MongolOptions {
+  client?: MongoClientOptions
 }
 
 /**

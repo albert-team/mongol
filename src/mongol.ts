@@ -7,6 +7,7 @@ import {
   DatabaseHook,
   DatabaseHookBeforeContext,
   DatabaseHookContext,
+  MongolOptions,
   SchemaOptions
 } from './types'
 import {
@@ -23,13 +24,14 @@ import {
 export class Mongol {
   private readonly client: MongoClient
   private readonly dbName: string
+  private readonly options: MongolOptions
   private db: Db
 
-  constructor(uri: string, dbName: string) {
-    this.client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
+  constructor(uri: string, dbName: string, options: MongolOptions = {}) {
+    this.options = Object.assign(options, {
+      client: { useNewUrlParser: true, useUnifiedTopology: true }
     })
+    this.client = new MongoClient(uri, this.options.client)
     this.dbName = dbName
   }
 
