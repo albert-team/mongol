@@ -36,6 +36,8 @@ $ npm i @albert-team/mongol
 
 ## GET STARTED
 
+The easy way:
+
 ```js
 const { Mongol } = require('@albert-team/mongol')
 
@@ -43,6 +45,24 @@ const main = async () => {
   const mongol = new Mongol('mongodb://localhost:27017/myproject', 'myproject')
   const db = await mongol.promisifiedDatabase
   // now you can use db variable as a normal mongodb.Db object
+}
+main()
+```
+
+The hard way:
+
+```js
+const { Mongol } = require('@albert-team/mongol')
+
+const main = async () => {
+  const mongol = new Mongol('mongodb://localhost:27017/myproject', 'myproject', {
+    // you can pass any valid MongoClient options here
+    client: { useNewUrlParser: true, useUnifiedTopology: true }
+  })
+  await mongol.connect()
+  const db = mongol.database
+  // now you can use db variable as a normal mongodb.Db object
+  await mongol.disconnect()
 }
 main()
 ```
