@@ -37,9 +37,9 @@ export const getCrudOp = (operation: CrudOperation): CrudOp => {
   else return CrudOp.BulkWrite // operation === CrudOperation.BulkWrite
 }
 
-export const parseCrudOperationArgs = <TArray extends any[]>(
+export const parseCrudOperationArgs = <TArgs extends any[]>(
   op: CrudOperation,
-  args: TArray
+  args: TArgs
 ): ParsedCrudOperationArgs => {
   let query: object
   let documents: object[] = []
@@ -57,19 +57,19 @@ export const parseCrudOperationArgs = <TArray extends any[]>(
   return { query, documents, update, subOperations, options }
 }
 
-export const unparseCrudOperationArgs = <TArray extends any[]>(
+export const unparseCrudOperationArgs = <TArgs extends any[]>(
   op: CrudOperation,
   parsedArgs: ParsedCrudOperationArgs
-): TArray => {
+): TArgs => {
   const { query, documents, update, subOperations, options } = parsedArgs
-  let args: TArray
+  let args: TArgs
 
-  if (op === CrudOperation.InsertOne) args = [documents[0], options] as TArray
-  else if (op === CrudOperation.InsertMany) args = [documents, options] as TArray
-  else if (UPDATE_OPERATIONS.has(op)) args = [query, update, options] as TArray
-  else if (REPLACE_OPERATIONS.has(op)) args = [query, documents[0], options] as TArray
-  else if (DELETE_OPERATIONS.has(op)) args = [query, options] as TArray
-  else if (op === CrudOperation.BulkWrite) args = [subOperations, options] as TArray
+  if (op === CrudOperation.InsertOne) args = [documents[0], options] as TArgs
+  else if (op === CrudOperation.InsertMany) args = [documents, options] as TArgs
+  else if (UPDATE_OPERATIONS.has(op)) args = [query, update, options] as TArgs
+  else if (REPLACE_OPERATIONS.has(op)) args = [query, documents[0], options] as TArgs
+  else if (DELETE_OPERATIONS.has(op)) args = [query, options] as TArgs
+  else if (op === CrudOperation.BulkWrite) args = [subOperations, options] as TArgs
 
   return args
 }

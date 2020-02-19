@@ -62,19 +62,19 @@ export interface DatabaseHookBeforeContext extends DatabaseHookContext {
 }
 
 /** Database hook "before" handler. */
-export interface DatabaseHookBeforeHandler<TArray extends any[]> {
-  (context: DatabaseHookBeforeContext, args: TArray):
+export interface DatabaseHookBeforeHandler<TArgs extends any[]> {
+  (context: DatabaseHookBeforeContext, args: TArgs):
     | void
-    | TArray
+    | TArgs
     | ParsedCrudOperationArgs
     | Promise<void>
-    | Promise<TArray>
+    | Promise<TArgs>
     | Promise<ParsedCrudOperationArgs>
 }
 
 /** Database hook "after" handler. */
-export interface DatabaseHookAfterHandler<T> {
-  (context: DatabaseHookContext, result: T): void | Promise<void>
+export interface DatabaseHookAfterHandler<TResult> {
+  (context: DatabaseHookContext, result: TResult): void | Promise<void>
 }
 
 /** Database hook "error" handler. */
@@ -83,9 +83,9 @@ export interface DatabaseHookErrorHandler {
 }
 
 /** Database hook. */
-export interface DatabaseHook<TArray extends any[], T> {
-  before?: DatabaseHookBeforeHandler<TArray>
-  after?: DatabaseHookAfterHandler<T>
+export interface DatabaseHook<TArgs extends any[], TResult> {
+  before?: DatabaseHookBeforeHandler<TArgs>
+  after?: DatabaseHookAfterHandler<TResult>
   error?: DatabaseHookErrorHandler
 }
 

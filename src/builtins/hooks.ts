@@ -2,9 +2,9 @@ import { CrudOp, DatabaseHook, NamingConvention, TimestampHookOptions } from '..
 import { withTimestamp } from '../utils'
 
 /** Timestamp hook factory function. */
-export const createTimestampHook = <TArray extends any[], T>(
+export const createTimestampHook = <TArgs extends any[], TResult>(
   options: TimestampHookOptions = {}
-): DatabaseHook<TArray, T> => {
+): DatabaseHook<TArgs, TResult> => {
   const {
     namingConventions = [NamingConvention.Unchanged, NamingConvention.CamelCase]
   } = options
@@ -47,7 +47,7 @@ export const createTimestampHook = <TArray extends any[], T>(
 
       return { query, documents, update, subOperations, options }
     }
-  } as DatabaseHook<TArray, T>
+  } as DatabaseHook<TArgs, TResult>
 }
 
 /**

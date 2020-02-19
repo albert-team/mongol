@@ -105,9 +105,9 @@ export class Mongol {
    * @param hook Database hook/trigger.
    * @returns Collection with the hook attached.
    */
-  public attachDatabaseHook<TSchema, TArray extends any[], T>(
+  public attachDatabaseHook<TSchema, TArgs extends any[], TResult>(
     collection: Collection<TSchema>,
-    hook: DatabaseHook<TArray, T>
+    hook: DatabaseHook<TArgs, TResult>
   ): Collection<TSchema> {
     for (const op of Object.values(CrudOperation)) {
       const originalFn = collection[op].bind(collection)
@@ -124,15 +124,15 @@ export class Mongol {
    * @param hook Database hook/trigger.
    * @param operation CRUD operation respective to the method.
    */
-  private withDatabaseHook<TArray extends any[], T>(
+  private withDatabaseHook<TArgs extends any[], TResult>(
     fn: Function,
-    hook: DatabaseHook<TArray, T>,
+    hook: DatabaseHook<TArgs, TResult>,
     operation: CrudOperation
   ): Function {
     const op: CrudOp = getCrudOp(operation)
 
-    return async (...args: TArray): Promise<any> => {
-      let newArgs: TArray
+    return async (...args: TArgs): Promise<any> => {
+      let newArgs: TArgs
       try {
         if (hook.before) {
           const parsedArgs = parseCrudOperationArgs(operation, args)
