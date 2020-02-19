@@ -78,12 +78,13 @@ export class Mongol {
    * @param collectionName Collection name.
    * @param schema JSON schema.
    * @param options Options.
+   * @returns Actually used JSON schema.
    */
   public async setSchema(
     collectionName: string,
     schema: object,
     options: SchemaOptions = {}
-  ): Promise<void> {
+  ): Promise<object> {
     const { ignoreUnsupportedKeywords = true, ignoreType = false } = options
     const db = await this.promisifiedDatabase
     const propNames = new Set<string>(
@@ -105,6 +106,8 @@ export class Mongol {
         validator: { $jsonSchema: schema }
       })
     }
+
+    return schema
   }
 
   /** Attach a database hook to a collection.
