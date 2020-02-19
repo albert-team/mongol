@@ -34,6 +34,19 @@ With npm
 $ npm i @albert-team/mongol
 ```
 
+## GET STARTED
+
+```js
+const { Mongol } = require('@albert-team/mongol')
+
+const main = async () => {
+  const mongol = new Mongol('mongodb://localhost:27017/myproject', 'myproject')
+  const db = await mongol.promisifiedDatabase
+  // now you can use db variable as a normal mongodb.Db object
+}
+main()
+```
+
 ## USAGE
 
 ### Auto-connect support
@@ -55,7 +68,7 @@ const coll = db.collection('mycollection')
 
 ### Enhanced JSON Schema draft-4 support
 
-Instead of throwing errors on schemas with [omitted keywords](https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/#json-schema-omission) ('$ref', '$schema', 'default', 'definitions', 'format', 'id'), Mongol may help you ignore them quietly:
+Instead of throwing errors on schemas with [omitted keywords](https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/#json-schema-omission) ($ref, $schema, default, definitions, format, id), Mongol may help you ignore them quietly:
 
 ```js
 const usedSchema = await mongol.setSchema('mycollection', originalSchema, {
@@ -98,10 +111,10 @@ await coll.insertOne({ foo: 'bar' })
 // Outer after
 ```
 
-Want an "unhooked" version? Just create another collection object:
+Want "unhooked" version? Just create another collection object:
 
 ```js
-const another = db.collection('mycollection') // this has nothing to do with coll object above
+const another = db.collection('mycollection') // this has nothing to do with coll variable above
 await another.insertOne({ foo: 'bar' })
 ```
 
