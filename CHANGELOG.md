@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.2
+
+### PATCHES
+
+- Fix missing files when deploying to NPM
+
 ## v0.7.1
 
 ### PATCHES

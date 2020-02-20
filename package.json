@@ -11,10 +11,11 @@
   "engines": {
     "node": ">=10"
   },
-  "version": "0.7.1",
+  "version": "0.7.2",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "builtins"
   ],
   "main": "dist/index.js",
   "scripts": {
