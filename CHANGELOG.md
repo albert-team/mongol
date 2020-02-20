@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.1
+
+### PATCHES
+
+- Fix `Mongol` always overwrites its constructor options
+
 ## v0.7.0
 
 ### FEATURES
