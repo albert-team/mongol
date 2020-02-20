@@ -28,9 +28,12 @@ export class Mongol {
   private db: Db
 
   constructor(uri: string, dbName: string, options: MongolOptions = {}) {
-    this.options = Object.assign(options, {
-      client: { useNewUrlParser: true, useUnifiedTopology: true }
-    })
+    this.options = Object.assign(
+      {
+        client: { useNewUrlParser: true, useUnifiedTopology: true }
+      },
+      options
+    )
     this.client = new MongoClient(uri, this.options.client)
     this.dbName = dbName
   }
