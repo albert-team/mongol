@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.3
+
+### PATCHES
+
+- Fix accidentally remove fields named "type"
+
 ## v0.7.2
 
 ### PATCHES
