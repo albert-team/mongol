@@ -7,8 +7,11 @@ beforeEach(() => {
   sampleSchema = {
     type: 'object',
     bsonType: 'object',
-    required: ['name', 'dateOfBirth', 'accountBalance'],
+    required: ['type', 'name', 'dateOfBirth', 'accountBalance'],
     properties: {
+      type: {
+        enum: ['normal', 'premium', 'enterprise']
+      },
       name: {
         type: 'string',
         bsonType: 'string',
@@ -19,11 +22,6 @@ beforeEach(() => {
         bsonType: 'date',
         format: 'date'
       },
-      accountBalance: {
-        type: 'integer',
-        bsonType: 'int',
-        default: 0
-      },
       address: {
         type: 'array',
         bsonType: 'array',
@@ -31,7 +29,7 @@ beforeEach(() => {
           {
             type: 'string',
             bsonType: 'string',
-            description: 'Detail address'
+            description: 'Detailed address'
           },
           {
             enum: ['Ha Noi', 'Ho Chi Minh City'],
@@ -43,6 +41,11 @@ beforeEach(() => {
             description: 'Country'
           }
         ]
+      },
+      accountBalance: {
+        type: 'integer',
+        bsonType: 'int',
+        default: 0
       }
     }
   }
@@ -52,8 +55,11 @@ test('removeProperties(), without removing type', () => {
   const result = {
     type: 'object',
     bsonType: 'object',
-    required: ['name', 'dateOfBirth', 'accountBalance'],
+    required: ['type', 'name', 'dateOfBirth', 'accountBalance'],
     properties: {
+      type: {
+        enum: ['normal', 'premium', 'enterprise']
+      },
       name: {
         type: 'string',
         bsonType: 'string',
@@ -74,7 +80,7 @@ test('removeProperties(), without removing type', () => {
           {
             type: 'string',
             bsonType: 'string',
-            description: 'Detail address'
+            description: 'Detailed address'
           },
           {
             enum: ['Ha Noi', 'Ho Chi Minh City'],
@@ -98,8 +104,11 @@ test('removeProperties(), without removing type', () => {
 test('removeProperties(), with type', () => {
   const result = {
     bsonType: 'object',
-    required: ['name', 'dateOfBirth', 'accountBalance'],
+    required: ['type', 'name', 'dateOfBirth', 'accountBalance'],
     properties: {
+      type: {
+        enum: ['normal', 'premium', 'enterprise']
+      },
       name: {
         bsonType: 'string',
         minLength: 8
@@ -115,7 +124,7 @@ test('removeProperties(), with type', () => {
         items: [
           {
             bsonType: 'string',
-            description: 'Detail address'
+            description: 'Detailed address'
           },
           {
             enum: ['Ha Noi', 'Ho Chi Minh City'],
