@@ -22,6 +22,11 @@ beforeEach(() => {
         bsonType: 'date',
         format: 'date'
       },
+      accountBalance: {
+        type: 'integer',
+        bsonType: 'int',
+        default: 0
+      },
       address: {
         type: 'array',
         bsonType: 'array',
@@ -41,11 +46,6 @@ beforeEach(() => {
             description: 'Country'
           }
         ]
-      },
-      accountBalance: {
-        type: 'integer',
-        bsonType: 'int',
-        default: 0
       }
     }
   }
