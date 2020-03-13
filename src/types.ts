@@ -1,4 +1,10 @@
-import { MongoClientOptions } from 'mongodb'
+import { MongoClientOptions, Collection } from 'mongodb'
+
+export interface ExtendedCollection<TSchema> extends Collection<TSchema> {
+  attachDatabaseHook: <TArgs extends any[], TResult>(
+    hook: DatabaseHook<TArgs, TResult>
+  ) => ExtendedCollection<TSchema>
+}
 
 /** Naming conventions. */
 export enum NamingConvention {

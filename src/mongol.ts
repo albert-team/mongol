@@ -7,6 +7,7 @@ import {
   DatabaseHook,
   DatabaseHookBeforeContext,
   DatabaseHookContext,
+  ExtendedCollection,
   MongolOptions,
   SchemaOptions
 } from './types'
@@ -58,6 +59,26 @@ export class Mongol {
         })
     }
     return Promise.resolve(this.db)
+  }
+
+  public collection<TSchema>(collectionName: string): ExtendedCollection<TSchema> {
+    return this.getCollection(this.database, collectionName)
+  }
+
+  public async promisifiedCollection<TSchema>(
+    collectionName: string
+  ): Promise<ExtendedCollection<TSchema>> {
+    return this.getCollection(await this.promisifiedDatabase, collectionName)
+  }
+
+  private getCollection<TSchema>(
+    db: Db,
+    collectionName: string
+  ): ExtendedCollection<TSchema> {
+    const result = db.collection(collectionName) as ExtendedCollection<TSchema>
+    result.attachDatabaseHook = (hook): ExtendedCollection<TSchema> =>
+      this.attachDatabaseHook(result, hook)
+    return result
   }
 
   /** Connect to the database.
@@ -123,12 +144,16 @@ export class Mongol {
   public attachDatabaseHook<TSchema, TArgs extends any[], TResult>(
     collection: Collection<TSchema>,
     hook: DatabaseHook<TArgs, TResult>
-  ): Collection<TSchema> {
+  ): ExtendedCollection<TSchema> {
     for (const op of Object.values(CrudOperation)) {
       const originalFn = collection[op].bind(collection)
       collection[op] = this.withDatabaseHook(originalFn, hook, op) as any
     }
-    return collection
+
+    const result = collection as ExtendedCollection<TSchema>
+    result.attachDatabaseHook = (hook): ExtendedCollection<TSchema> =>
+      this.attachDatabaseHook(result, hook)
+    return result
   }
 
   /**
