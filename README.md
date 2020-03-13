@@ -98,13 +98,13 @@ const usedSchema = await mongol.setSchema('mycollection', originalSchema, {
 
 ### Database hook/trigger support
 
-You can attach a hook to a collection either by using `ExtendedCollection.attachDatabaseHook()`:
+You can attach a hook to a collection either by using `ExtendedCollection.attachHook()`:
 
 ```js
 const coll = await mongol.promisifiedCollection('mycollection')
 // or
 // const coll = mongol.collection('mycollection')
-coll.attachDatabaseHook({
+coll.attachHook({
   before: (context) => console.log(`Before ${context.operation}`),
   after: (context) => console.log(`After ${context.operation}`)
 })
@@ -128,19 +128,19 @@ await coll.insertOne({ foo: 'bar' })
 
 **Notice:**
 
-- Using `ExtendedCollection.attachDatabaseHook()` is recommended, because it allows you to chain method calls as in the nested hook example below.
+- Using `ExtendedCollection.attachHook()` is recommended, because it allows you to chain method calls as in the nested hooks example below.
 - `Mongol.attachDatabaseHook()` returns the original collection object but casted to `ExtendedCollection` anyway.
 
-Nested hook:
+Nested hooks:
 
 ```js
 const coll = mongol
   .collection('mycollection')
-  .attachDatabaseHook({
+  .attachHook({
     before: () => console.log('Inner before'),
     after: () => console.log('Inner after')
   })
-  .attachDatabaseHook({
+  .attachHook({
     before: () => console.log('Outer before'),
     after: () => console.log('Outer after')
   })
@@ -154,7 +154,9 @@ await coll.insertOne({ foo: 'bar' })
 Want "unhooked" version? Just create another collection object:
 
 ```js
-const another = db.collection('mycollection') // this has nothing to do with coll variable above
+const another = mongol.collection('mycollection') // this has nothing to do with coll variable above
+// or
+// const another = db.collection('mycollection')
 await another.insertOne({ foo: 'bar' })
 //
 ```
@@ -166,11 +168,12 @@ Timestamp hook:
 ```js
 const { createTimestampHook } = require('@albert-team/mongol/builtins/hooks')
 
-const coll = db.collection('mycollection')
-mongol.attachDatabaseHook(
-  coll,
-  createTimestampHook({ namingConventions: ['unchanged', 'snakecase'] })
-)
+const coll = mongol
+  .collection('mycollection')
+  .attachHook(
+    coll,
+    createTimestampHook({ namingConventions: ['unchanged', 'snakecase'] })
+  )
 ```
 
 **Notice:** Replacement document in replace operations (findOneAndReplace and replaceOne) is considered a new one, hence uses createdAt/created_at.

@@ -1,7 +1,8 @@
 import { MongoClientOptions, Collection } from 'mongodb'
 
+/** Basically MongoDB collection, with some additional properties and methods. */
 export interface ExtendedCollection<TSchema> extends Collection<TSchema> {
-  attachDatabaseHook: <TArgs extends any[], TResult>(
+  attachHook: <TArgs extends any[], TResult>(
     hook: DatabaseHook<TArgs, TResult>
   ) => ExtendedCollection<TSchema>
 }

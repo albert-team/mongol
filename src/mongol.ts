@@ -61,11 +61,19 @@ export class Mongol {
     return Promise.resolve(this.db)
   }
 
+  /**
+   * Fetch a specific collection.
+   * @param collectionName Collection name.
+   */
   public collection<TSchema>(collectionName: string): ExtendedCollection<TSchema> {
     const db = this.database
     return this.toExtendedCollection(db.collection(collectionName))
   }
 
+  /**
+   * Fetch a specific collection, as a Promise.
+   * @param collectionName Collection name.
+   */
   public async promisifiedCollection<TSchema>(
     collectionName: string
   ): Promise<ExtendedCollection<TSchema>> {
@@ -144,11 +152,15 @@ export class Mongol {
     return this.toExtendedCollection(collection)
   }
 
+  /**
+   * Cast a collection object into [[ExtendedCollection]].
+   * @param collection Collection.
+   */
   private toExtendedCollection<TSchema>(
     collection: Collection<TSchema>
   ): ExtendedCollection<TSchema> {
     const result = collection as ExtendedCollection<TSchema>
-    result.attachDatabaseHook = (hook): ExtendedCollection<TSchema> =>
+    result.attachHook = (hook): ExtendedCollection<TSchema> =>
       this.attachDatabaseHook(result, hook)
     return result
   }
