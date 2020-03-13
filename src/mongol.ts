@@ -62,23 +62,15 @@ export class Mongol {
   }
 
   public collection<TSchema>(collectionName: string): ExtendedCollection<TSchema> {
-    return this.getCollection(this.database, collectionName)
+    const db = this.database
+    return this.toExtendedCollection(db.collection(collectionName))
   }
 
   public async promisifiedCollection<TSchema>(
     collectionName: string
   ): Promise<ExtendedCollection<TSchema>> {
-    return this.getCollection(await this.promisifiedDatabase, collectionName)
-  }
-
-  private getCollection<TSchema>(
-    db: Db,
-    collectionName: string
-  ): ExtendedCollection<TSchema> {
-    const result = db.collection(collectionName) as ExtendedCollection<TSchema>
-    result.attachDatabaseHook = (hook): ExtendedCollection<TSchema> =>
-      this.attachDatabaseHook(result, hook)
-    return result
+    const db = await this.promisifiedDatabase
+    return this.toExtendedCollection(db.collection(collectionName))
   }
 
   /** Connect to the database.
@@ -149,7 +141,12 @@ export class Mongol {
       const originalFn = collection[op].bind(collection)
       collection[op] = this.withDatabaseHook(originalFn, hook, op) as any
     }
+    return this.toExtendedCollection(collection)
+  }
 
+  private toExtendedCollection<TSchema>(
+    collection: Collection<TSchema>
+  ): ExtendedCollection<TSchema> {
     const result = collection as ExtendedCollection<TSchema>
     result.attachDatabaseHook = (hook): ExtendedCollection<TSchema> =>
       this.attachDatabaseHook(result, hook)
