@@ -105,6 +105,7 @@
   <span class="hljs-keyword">const</span> mongol = <span class="hljs-keyword">new</span> Mongol(<span class="hljs-string">'mongodb://localhost:27017/myproject'</span>, <span class="hljs-string">'myproject'</span>)
   <span class="hljs-keyword">const</span> db = <span class="hljs-keyword">await</span> mongol.promisifiedDatabase
   <span class="hljs-comment">// now you can use db variable as a normal Db object</span>
+  <span class="hljs-keyword">await</span> mongol.disconnect()
 }
 main()</code></pre>
 				<p>The hard way:</p>
@@ -143,7 +144,18 @@ main()</code></pre>
 				<a href="#database-hooktrigger-support" id="database-hooktrigger-support" style="color: inherit; text-decoration: none;">
 					<h3>Database hook/trigger support</h3>
 				</a>
-				<p>Basic hook:</p>
+				<p>You can attach a hook to a collection either by using <code>ExtendedCollection.attachHook()</code>:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> coll = <span class="hljs-keyword">await</span> mongol.promisifiedCollection(<span class="hljs-string">'mycollection'</span>)
+<span class="hljs-comment">// or</span>
+<span class="hljs-comment">// const coll = mongol.collection('mycollection')</span>
+coll.attachHook({
+  <span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">context</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Before <span class="hljs-subst">${context.operation}</span>`</span>),
+  <span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">context</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`After <span class="hljs-subst">${context.operation}</span>`</span>)
+})
+<span class="hljs-keyword">await</span> coll.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })
+<span class="hljs-comment">// Before insertOne</span>
+<span class="hljs-comment">// After insertOne</span></code></pre>
+				<p>Or using <code>Mongol.attachDatabaseHook()</code>:</p>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)
 mongol.attachDatabaseHook(coll, {
   <span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">context</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Before <span class="hljs-subst">${context.operation}</span>`</span>),
@@ -152,23 +164,31 @@ mongol.attachDatabaseHook(coll, {
 <span class="hljs-keyword">await</span> coll.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })
 <span class="hljs-comment">// Before insertOne</span>
 <span class="hljs-comment">// After insertOne</span></code></pre>
-				<p>Nested hook:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)
-mongol.attachDatabaseHook(coll, {
-  <span class="hljs-attr">before</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Inner before'</span>),
-  <span class="hljs-attr">after</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Inner after'</span>)
-})
-mongol.attachDatabaseHook(coll, {
-  <span class="hljs-attr">before</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Outer before'</span>),
-  <span class="hljs-attr">after</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Outer after'</span>)
-})
+				<p><strong>Notice:</strong></p>
+				<ul>
+					<li>Using <code>ExtendedCollection.attachHook()</code> is recommended, because it allows you to chain method calls as in the nested hooks example below.</li>
+					<li><code>Mongol.attachDatabaseHook()</code> returns the original collection object but casted to <code>ExtendedCollection</code> anyway.</li>
+				</ul>
+				<p>Nested hooks:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> coll = mongol
+  .collection(<span class="hljs-string">'mycollection'</span>)
+  .attachHook({
+    <span class="hljs-attr">before</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Inner before'</span>),
+    <span class="hljs-attr">after</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Inner after'</span>)
+  })
+  .attachHook({
+    <span class="hljs-attr">before</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Outer before'</span>),
+    <span class="hljs-attr">after</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Outer after'</span>)
+  })
 <span class="hljs-keyword">await</span> coll.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })
 <span class="hljs-comment">// Outer before</span>
 <span class="hljs-comment">// Inner before</span>
 <span class="hljs-comment">// Inner after</span>
 <span class="hljs-comment">// Outer after</span></code></pre>
 				<p>Want &quot;unhooked&quot; version? Just create another collection object:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> another = db.collection(<span class="hljs-string">'mycollection'</span>) <span class="hljs-comment">// this has nothing to do with coll variable above</span>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> another = mongol.collection(<span class="hljs-string">'mycollection'</span>) <span class="hljs-comment">// this has nothing to do with coll variable above</span>
+<span class="hljs-comment">// or</span>
+<span class="hljs-comment">// const another = db.collection('mycollection')</span>
 <span class="hljs-keyword">await</span> another.insertOne({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> })
 <span class="hljs-comment">//</span></code></pre>
 				<a href="#useful-builtin-hooks" id="useful-builtin-hooks" style="color: inherit; text-decoration: none;">
@@ -177,11 +197,12 @@ mongol.attachDatabaseHook(coll, {
 				<p>Timestamp hook:</p>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> { createTimestampHook } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@albert-team/mongol/builtins/hooks'</span>)
 
-<span class="hljs-keyword">const</span> coll = db.collection(<span class="hljs-string">'mycollection'</span>)
-mongol.attachDatabaseHook(
-  coll,
-  createTimestampHook({ <span class="hljs-attr">namingConventions</span>: [<span class="hljs-string">'unchanged'</span>, <span class="hljs-string">'snakecase'</span>] })
-)</code></pre>
+<span class="hljs-keyword">const</span> coll = mongol
+  .collection(<span class="hljs-string">'mycollection'</span>)
+  .attachHook(
+    coll,
+    createTimestampHook({ <span class="hljs-attr">namingConventions</span>: [<span class="hljs-string">'unchanged'</span>, <span class="hljs-string">'snakecase'</span>] })
+  )</code></pre>
 				<p><strong>Notice:</strong> Replacement document in replace operations (findOneAndReplace and replaceOne) is considered a new one, hence uses createdAt/created_at.</p>
 				<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
 					<h2>API DOCUMENTATION</h2>
@@ -238,6 +259,9 @@ mongol.attachDatabaseHook(
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/databasehookerrorhandler.html" class="tsd-kind-icon">Database<wbr>Hook<wbr>Error<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/extendedcollection.html" class="tsd-kind-icon">Extended<wbr>Collection</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/mongoloptions.html" class="tsd-kind-icon">Mongol<wbr>Options</a>
