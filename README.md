@@ -45,6 +45,7 @@ const main = async () => {
   const mongol = new Mongol('mongodb://localhost:27017/myproject', 'myproject')
   const db = await mongol.promisifiedDatabase
   // now you can use db variable as a normal Db object
+  await mongol.disconnect()
 }
 main()
 ```
@@ -97,7 +98,22 @@ const usedSchema = await mongol.setSchema('mycollection', originalSchema, {
 
 ### Database hook/trigger support
 
-Basic hook:
+You can attach a hook to a collection either by using `ExtendedCollection.attachDatabaseHook()`:
+
+```js
+const coll = await mongol.promisifiedCollection('mycollection')
+// or
+// const coll = mongol.collection('mycollection')
+coll.attachDatabaseHook({
+  before: (context) => console.log(`Before ${context.operation}`),
+  after: (context) => console.log(`After ${context.operation}`)
+})
+await coll.insertOne({ foo: 'bar' })
+// Before insertOne
+// After insertOne
+```
+
+Or using `Mongol.attachDatabaseHook()`:
 
 ```js
 const coll = db.collection('mycollection')
@@ -110,18 +126,24 @@ await coll.insertOne({ foo: 'bar' })
 // After insertOne
 ```
 
+**Notice:**
+
+- Using `ExtendedCollection.attachDatabaseHook()` is recommended, because it allows you to chain method calls as in the nested hook example below.
+- `Mongol.attachDatabaseHook()` returns the original collection object but casted to `ExtendedCollection` anyway.
+
 Nested hook:
 
 ```js
-const coll = db.collection('mycollection')
-mongol.attachDatabaseHook(coll, {
-  before: () => console.log('Inner before'),
-  after: () => console.log('Inner after')
-})
-mongol.attachDatabaseHook(coll, {
-  before: () => console.log('Outer before'),
-  after: () => console.log('Outer after')
-})
+const coll = mongol
+  .collection('mycollection')
+  .attachDatabaseHook({
+    before: () => console.log('Inner before'),
+    after: () => console.log('Inner after')
+  })
+  .attachDatabaseHook({
+    before: () => console.log('Outer before'),
+    after: () => console.log('Outer after')
+  })
 await coll.insertOne({ foo: 'bar' })
 // Outer before
 // Inner before
