@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.8.0
+
+### FEATURES
+
+- Add `ExtendedCollection` with additional method `attachHook()` with the same functionality as `Mongol.attachDatabaseHook()`
+- Add `Mongol.collection()` and `Mongol.promisifiedCollection()` to fetch `ExtendedCollection`
+- `Mongol.attachDatabaseHook()` now returns the original collection object as `ExtendedCollection`
+
 ## v0.7.3
 
 ### PATCHES
