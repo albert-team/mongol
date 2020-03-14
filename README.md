@@ -43,8 +43,10 @@ const { Mongol } = require('@albert-team/mongol')
 
 const main = async () => {
   const mongol = new Mongol('mongodb://localhost:27017/myproject', 'myproject')
-  const db = await mongol.promisifiedDatabase
-  // now you can use db variable as a normal Db object
+  const coll = await mongol.promisifiedCollection('mycollection')
+
+  // ...now you can use coll variable as a normal Collection object
+
   await mongol.disconnect()
 }
 main()
@@ -62,7 +64,10 @@ const main = async () => {
   })
   await mongol.connect()
   const db = mongol.database
-  // now you can use db variable as a normal Db object
+  const coll = db.collection('mycollection')
+
+  // ...now you can use coll variable as a normal Collection object
+
   await mongol.disconnect()
 }
 main()
@@ -83,6 +88,12 @@ Just use `Mongol.promisifiedDatabase` and you are good to go:
 
 ```js
 const db = await mongol.promisifiedDatabase
+```
+
+Even better, use `Mongol.promisifiedCollection()` directly if you just need to fetch a collection:
+
+```js
+const coll = await mongol.promisifiedCollection('mycollection')
 ```
 
 ### Enhanced JSON Schema draft-4 support
@@ -155,8 +166,6 @@ Want "unhooked" version? Just create another collection object:
 
 ```js
 const another = mongol.collection('mycollection') // this has nothing to do with coll variable above
-// or
-// const another = db.collection('mycollection')
 await another.insertOne({ foo: 'bar' })
 //
 ```
@@ -170,10 +179,7 @@ const { createTimestampHook } = require('@albert-team/mongol/builtins/hooks')
 
 const coll = mongol
   .collection('mycollection')
-  .attachHook(
-    coll,
-    createTimestampHook({ namingConventions: ['unchanged', 'snakecase'] })
-  )
+  .attachHook(createTimestampHook({ namingConventions: ['unchanged', 'snakecase'] }))
 ```
 
 **Notice:** Replacement document in replace operations (findOneAndReplace and replaceOne) is considered a new one, hence uses createdAt/created_at.
