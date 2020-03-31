@@ -9,7 +9,7 @@ export class DbNotFoundError extends ReferenceError {
 export class DatabaseHookError extends Error {
   public readonly context: DatabaseHookContext
 
-  constructor(message = 'Database hook error.', context: DatabaseHookContext) {
+  constructor(context: DatabaseHookContext, message = 'Database hook error.') {
     super(message)
     this.context = context
   }

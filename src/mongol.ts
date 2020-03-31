@@ -208,7 +208,7 @@ export class Mongol {
         return result
       } catch (err) {
         if (hook.error) await hook.error(context, err)
-        throw new DatabaseHookError(err.message, context)
+        throw new DatabaseHookError(context, err.message)
       }
     }
   }
