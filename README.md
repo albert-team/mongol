@@ -77,7 +77,7 @@ main()
 
 ### Auto-connect support
 
-Instead of manually calling `Mongol.connect()`:
+To access `Db` object, instead of manually calling `Mongol.connect()`:
 
 ```js
 await mongol.connect()
@@ -90,7 +90,14 @@ Just use `Mongol.promisifiedDatabase` and you are good to go:
 const db = await mongol.promisifiedDatabase
 ```
 
-Even better, use `Mongol.promisifiedCollection()` directly if you just need to fetch a collection:
+To fetch an `ExtendedCollection` object, instead of manually calling `Mongol.collection()`:
+
+```js
+await mongol.connect()
+const coll = mongol.collection('mycollection')
+```
+
+Just use `Mongol.promisifiedCollection()` and you are good to go:
 
 ```js
 const coll = await mongol.promisifiedCollection('mycollection')
