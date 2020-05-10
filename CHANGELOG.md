@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.9.0
+
+### FEATURES
+
+- Export constants under main entry
+- Improve typings
+
+### PATCHES
+
+- Fix `DatabaseHookError` constructor params
+
 ## v0.8.0
 
 ### FEATURES
